@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/wudaozi_album_Item_padding">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_album_thumbnail"
+        android:layout_width="@dimen/wudaozi_album_thumbnail_size"
+        android:layout_height="@dimen/wudaozi_album_thumbnail_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_album_name"
+        style="@style/AlbumNameTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/wudaozi_album_Item_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_album_thumbnail"
+        app:layout_constraintTop_toTopOf="@+id/iv_album_thumbnail"
+        tools:text="CameraCameraCameraCameraCameraCameraCameraCameraCameraCamera" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_album_photo_count"
+        style="@style/AlbumPhotoCountTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/wudaozi_album_Item_margin"
+        android:layout_marginTop="@dimen/wudaozi_album_Item_padding"
+        app:layout_constraintStart_toEndOf="@+id/iv_album_thumbnail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_album_name"
+        tools:text="146" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

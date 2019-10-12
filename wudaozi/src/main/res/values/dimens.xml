@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- view size -->
+    <dimen name="wudaozi_sure_text_margin_end">12dp</dimen>
+    <dimen name="wudaozi_album_thumbnail_size">40dp</dimen>
+    <dimen name="wudaozi_album_item_height">48dp</dimen>
+    <dimen name="wudaozi_album_Item_padding">4dp</dimen>
+    <dimen name="wudaozi_album_Item_margin">8dp</dimen>
+    <dimen name="wudaozi_album_title_size">200dp</dimen>
+    <dimen name="wudaozi_album_list_width">250dp</dimen>
+    <!-- text size -->
+    <dimen name="wudaozi_sure_text_size">16sp</dimen>
+    <dimen name="wudaozi_album_title_text_size">18sp</dimen>
+    <dimen name="wudaozi_album_name_text_size">14sp</dimen>
+    <dimen name="wudaozi_album_photo_count_text_size">12sp</dimen>
+</resources>

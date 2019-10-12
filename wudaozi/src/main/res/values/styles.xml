@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/wudaozi_toolbar_color_control_normal</item>
+    </style>
+
+    <style name="BaseTextStyle">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="SureTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/wudaozi_sure_text_size</item>
+        <item name="android:textColor">@color/wudaozi_sure_text_color</item>
+    </style>
+
+    <style name="AlbumTitleTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/wudaozi_album_title_text_size</item>
+        <item name="android:textColor">@color/wudaozi_toolbar_color_control_normal</item>
+    </style>
+
+    <style name="AlbumNameTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/wudaozi_album_name_text_size</item>
+        <item name="android:textColor">@color/wudaozi_album_name_text_color</item>
+    </style>
+
+    <style name="AlbumPhotoCountTextStyle">
+        <item name="android:textSize">@dimen/wudaozi_album_photo_count_text_size</item>
+        <item name="android:textColor">@color/wudaozi_album_photo_count_text_color</item>
+    </style>
+</resources>

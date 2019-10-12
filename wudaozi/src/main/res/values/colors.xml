@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="wudaozi_primary">#177CB0</color>
+    <color name="wudaozi_toolbar_color_control_normal">#FFFFFF</color>
+    <color name="wudaozi_sure_text_disable_color">#BBBBBB</color>
+    <color name="wudaozi_sure_text_enable_color">#FFFFFF</color>
+    <color name="wudaozi_album_name_text_color">#333333</color>
+    <color name="wudaozi_album_photo_count_text_color">#999999</color>
+</resources>

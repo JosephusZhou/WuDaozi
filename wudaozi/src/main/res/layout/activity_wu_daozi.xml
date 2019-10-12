@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root"
+    style="@style/Theme.AppCompat.Light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/wudaozi_primary"
+    android:orientation="vertical"
+    tools:context=".view.WuDaoziActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@android:color/transparent"
+        android:theme="@style/ToolbarTheme">
+
+        <TextView
+            android:id="@+id/tv_album"
+            style="@style/AlbumTitleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:drawableEnd="@drawable/ic_arrow_drop_down"
+            android:gravity="center_vertical"
+            android:maxWidth="@dimen/wudaozi_album_title_size"
+            tools:text="Camera" />
+
+        <TextView
+            android:id="@+id/tv_sure"
+            style="@style/SureTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/wudaozi_sure_text_margin_end"
+            android:enabled="false"
+            android:text="@string/wudaozi_sure_text" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

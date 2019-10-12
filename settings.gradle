@@ -1,0 +1,2 @@
+include ':app', ':wudaozi'
+rootProject.name='WuDaozi'

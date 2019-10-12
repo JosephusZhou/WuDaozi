@@ -11,13 +11,14 @@ import android.widget.TextView
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.AlbumEntity
+import com.josephuszhou.wudaozi.util.AttrUtil
 
-class AlbumAdapter(private var context: Context, private var mList: ArrayList<AlbumEntity>) :
+class AlbumAdapter(private var mContext: Context, private var mList: ArrayList<AlbumEntity>) :
     BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewHolder: ViewHolder = if (convertView == null) {
-            ViewHolder(context)
+            ViewHolder(mContext)
         } else {
             convertView.tag as ViewHolder
         }
@@ -38,15 +39,17 @@ class AlbumAdapter(private var context: Context, private var mList: ArrayList<Al
     }
 
     companion object {
-        class ViewHolder(private val context: Context) {
+        class ViewHolder(private val mContext: Context) {
             @SuppressLint("InflateParams")
             var contentView: View =
-                LayoutInflater.from(context).inflate(R.layout.layout_album_item, null)
+                LayoutInflater.from(mContext).inflate(R.layout.layout_album_item, null)
             private var ivAlbumThumbnail: ImageView
             private var tvAlbumName: TextView
             private var tvAlbumPhotoCount: TextView
 
             private var albumEntity: AlbumEntity? = null
+
+            private val thumbnailPlaceHolder = AttrUtil.getDrawable(mContext, R.attr.thumbnail_placeholder)
 
             init {
                 ivAlbumThumbnail = contentView.findViewById(R.id.iv_album_thumbnail)
@@ -63,9 +66,9 @@ class AlbumAdapter(private var context: Context, private var mList: ArrayList<Al
             private fun updateView() {
                 albumEntity?.let {
                     Config.getInstance().mImageLoader.loadThumbnail(
-                        context,
-                        context.resources.getDimensionPixelSize(R.dimen.wudaozi_album_thumbnail_size),
-                        null,
+                        mContext,
+                        mContext.resources.getDimensionPixelSize(R.dimen.wudaozi_album_thumbnail_size),
+                        thumbnailPlaceHolder,
                         ivAlbumThumbnail,
                         it.thumbnail.uri
                     )

@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.adapter.AlbumAdapter
 import com.josephuszhou.wudaozi.entity.AlbumEntity
+import com.josephuszhou.wudaozi.util.AttrUtil
 
 class AlbumSpinner(context: Context) {
 
@@ -60,7 +61,7 @@ class AlbumSpinner(context: Context) {
         mSelectedTextView?.let {
             // tint dropdown arrow icon
             val right = it.compoundDrawablesRelative[2]
-            val color = it.context.resources.getColor(R.color.wudaozi_toolbar_color_control_normal)
+            val color = AttrUtil.getcolor(it.context, R.attr.toolbar_album_text_color)
             right.setColorFilter(color, PorterDuff.Mode.SRC_IN)
 
             it.setOnClickListener {

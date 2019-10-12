@@ -34,6 +34,7 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(Config.getInstance().mThemeId)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wu_daozi)
 

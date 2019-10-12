@@ -2,10 +2,9 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_root"
-    style="@style/Theme.AppCompat.Light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/wudaozi_primary"
+    android:background="?image_select_background_color"
     android:orientation="vertical"
     tools:context=".view.WuDaoziActivity">
 
@@ -13,28 +12,33 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/transparent"
-        android:theme="@style/ToolbarTheme">
+        android:theme="?toolbar_theme">
 
         <TextView
             android:id="@+id/tv_album"
-            style="@style/AlbumTitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="?actionBarSize"
             android:drawableEnd="@drawable/ic_arrow_drop_down"
+            android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxWidth="@dimen/wudaozi_album_title_size"
+            android:maxLines="1"
+            android:textColor="?toolbar_album_text_color"
+            android:textSize="@dimen/wudaozi_toolbar_album_title_text_size"
             tools:text="Camera" />
 
         <TextView
             android:id="@+id/tv_sure"
-            style="@style/SureTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="@dimen/wudaozi_sure_text_margin_end"
+            android:ellipsize="end"
             android:enabled="false"
-            android:text="@string/wudaozi_sure_text" />
+            android:maxLines="1"
+            android:text="@string/wudaozi_sure_text"
+            android:textColor="?toolbar_sure_text_color"
+            android:textSize="@dimen/wudaozi_toolbar_sure_text_size" />
 
     </androidx.appcompat.widget.Toolbar>
 

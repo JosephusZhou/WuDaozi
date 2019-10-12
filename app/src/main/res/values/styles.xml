@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Custom WuDaozi theme -->
+    <style name="CustomWuDaoziTheme" parent="WuDaozi.Theme">
+        <item name="toolbar_theme">@style/CustomToolbarTheme</item>
+    </style>
+
+    <style name="CustomToolbarTheme" parent="WuDaozi.Toolbar">
+        <item name="colorControlNormal">#FFFF00</item>
+    </style>
+
 </resources>

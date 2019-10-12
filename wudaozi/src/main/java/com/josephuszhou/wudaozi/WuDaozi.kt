@@ -1,6 +1,8 @@
 package com.josephuszhou.wudaozi
 
 import android.app.Activity
+import androidx.annotation.IntRange
+import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
@@ -27,13 +29,17 @@ class WuDaozi private constructor(activity: Activity) {
 
     private val mConfig = Config.getInitialInstance()
 
+    fun theme(@StyleRes themeId: Int):WuDaozi {
+        mConfig.mThemeId = themeId
+        return this
+    }
 
     fun imageLoader(imageLoader: ImageLoader): WuDaozi {
         mConfig.mImageLoader = imageLoader
         return this
     }
 
-    fun columnsCount(columnsCount: Int): WuDaozi {
+    fun columnsCount(@IntRange(from = 1) columnsCount: Int): WuDaozi {
         mConfig.mColumnsCount = columnsCount
         return this
     }

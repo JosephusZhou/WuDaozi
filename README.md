@@ -12,6 +12,6 @@ It may takes a long time, but doesn't matter, Rome wasn't built in a day.
 * Select multiple images in sequence
 * Filter image size
 * Preview image
-* Uniform resource definition, open resource attributes
+* Uniform resource definition, open resource attributes ✔
 * Decouple code
 * Performance optimization

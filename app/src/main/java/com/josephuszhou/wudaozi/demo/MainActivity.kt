@@ -21,9 +21,11 @@ class MainActivity : AppCompatActivity() {
         requestPermission()
 
         btn.setOnClickListener {
-            WuDaozi.with(this)
-                .columnsCount(4)
-                .start()
+            WuDaozi.with(this) // set context
+                //.theme(R.style.CustomWuDaoziTheme) // set custom theme, change toolbar control normal color
+                //.imageLoader(GlideLoader()) // set custom image loader
+                .columnsCount(4) // set custom columns count
+                .start() // start to select images
         }
     }
 

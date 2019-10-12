@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="colorControlNormal">@color/wudaozi_toolbar_color_control_normal</item>
+    <!--Activity Theme-->
+    <style name="WuDaozi.Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/wudaozi_primary</item>
+        <item name="colorPrimaryDark">@color/wudaozi_primary</item>
+        <!-- image select activity background color -->
+        <item name="image_select_background_color">@color/wudaozi_image_select_background_color</item>
+        <!-- toolbar theme -->
+        <item name="toolbar_theme">@style/WuDaozi.Toolbar</item>
+        <!-- toolbar selected album title color -->
+        <item name="toolbar_album_text_color">@color/wudaozi_toolbar_control_normal_color</item>
+        <!-- toolbar sure text color -->
+        <item name="toolbar_sure_text_color">@color/wudaozi_sure_text_color</item>
+        <!-- spinner album title color -->
+        <item name="spinner_album_title_text_color">@color/wudaozi_album_title_text_color</item>
+        <!-- spinner album photo count color -->
+        <item name="spinner_album_count_text_color">@color/wudaozi_album_count_text_color</item>
+        <!-- Photo thumbnail placeholder for image select activity -->
+        <item name="thumbnail_placeholder">@color/wudaozi_thumbnail_placeholder_color</item>
     </style>
 
-    <style name="BaseTextStyle">
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-    </style>
-
-    <style name="SureTextStyle" parent="BaseTextStyle">
-        <item name="android:textSize">@dimen/wudaozi_sure_text_size</item>
-        <item name="android:textColor">@color/wudaozi_sure_text_color</item>
-    </style>
-
-    <style name="AlbumTitleTextStyle" parent="BaseTextStyle">
-        <item name="android:textSize">@dimen/wudaozi_album_title_text_size</item>
-        <item name="android:textColor">@color/wudaozi_toolbar_color_control_normal</item>
-    </style>
-
-    <style name="AlbumNameTextStyle" parent="BaseTextStyle">
-        <item name="android:textSize">@dimen/wudaozi_album_name_text_size</item>
-        <item name="android:textColor">@color/wudaozi_album_name_text_color</item>
-    </style>
-
-    <style name="AlbumPhotoCountTextStyle">
-        <item name="android:textSize">@dimen/wudaozi_album_photo_count_text_size</item>
-        <item name="android:textColor">@color/wudaozi_album_photo_count_text_color</item>
+    <style name="WuDaozi.Toolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/wudaozi_toolbar_control_normal_color</item>
+        <item name="android:background">@color/wudaozi_toolbar_background_color</item>
     </style>
 </resources>

@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.PhotoEntity
+import com.josephuszhou.wudaozi.util.AttrUtil
 
 class PhotoAdapter(private val mContext: Context, private val size: Int, private var mList: ArrayList<PhotoEntity>): RecyclerView.Adapter<PhotoAdapter.Companion.VH>() {
+
+    private val thumbnailPlaceHolder = AttrUtil.getDrawable(mContext, R.attr.thumbnail_placeholder)
 
     companion object {
         class VH(v: View): RecyclerView.ViewHolder(v) {
@@ -31,6 +34,6 @@ class PhotoAdapter(private val mContext: Context, private val size: Int, private
     override fun getItemCount(): Int = mList.size
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        Config.getInstance().mImageLoader.loadThumbnail(mContext, size, null, holder.ivPhoto, mList[position].uri)
+        Config.getInstance().mImageLoader.loadThumbnail(mContext, size, thumbnailPlaceHolder, holder.ivPhoto, mList[position].uri)
     }
 }

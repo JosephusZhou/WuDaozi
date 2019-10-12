@@ -24,7 +24,7 @@ class AlbumSpinner(context: Context) {
 
     init {
         mListPopupWindow.isModal = true
-        mListPopupWindow.setContentWidth(context.resources.getDimensionPixelSize(R.dimen.wudaozi_album_list_width))
+        mListPopupWindow.setContentWidth(context.resources.getDimensionPixelSize(R.dimen.wudaozi_spinner_width))
         mListPopupWindow.setOnItemClickListener { _, _, position, _ ->
             onselected(position)
             mOnItemSelectedListener?.onItemSelected(position)
@@ -67,7 +67,7 @@ class AlbumSpinner(context: Context) {
             it.setOnClickListener {
                 mAlbumAdapter?.let { it1 ->
                     val itemHeight =
-                        it.resources.getDimensionPixelSize(R.dimen.wudaozi_album_item_height)
+                        it.resources.getDimensionPixelSize(R.dimen.wudaozi_spinner_item_height)
                     mListPopupWindow.height = if (it1.count > MAX_SHOW_COUNT) {
                         itemHeight * MAX_SHOW_COUNT
                     } else {

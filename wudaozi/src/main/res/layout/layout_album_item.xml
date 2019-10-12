@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/wudaozi_album_Item_padding">
+    android:padding="@dimen/wudaozi_spinner_Item_padding">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_album_thumbnail"
-        android:layout_width="@dimen/wudaozi_album_thumbnail_size"
-        android:layout_height="@dimen/wudaozi_album_thumbnail_size"
+        android:layout_width="@dimen/wudaozi_spinner_thumbnail_size"
+        android:layout_height="@dimen/wudaozi_spinner_thumbnail_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,7 +18,7 @@
         android:id="@+id/tv_album_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/wudaozi_album_Item_margin"
+        android:layout_marginStart="@dimen/wudaozi_spinner_Item_margin"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="?spinner_album_title_text_color"
@@ -32,8 +32,8 @@
         android:id="@+id/tv_album_photo_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/wudaozi_album_Item_margin"
-        android:layout_marginTop="@dimen/wudaozi_album_Item_padding"
+        android:layout_marginStart="@dimen/wudaozi_spinner_Item_margin"
+        android:layout_marginTop="@dimen/wudaozi_spinner_Item_padding"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="?spinner_album_count_text_color"

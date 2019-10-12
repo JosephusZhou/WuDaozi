@@ -67,7 +67,7 @@ class AlbumAdapter(private var mContext: Context, private var mList: ArrayList<A
                 albumEntity?.let {
                     Config.getInstance().mImageLoader.loadThumbnail(
                         mContext,
-                        mContext.resources.getDimensionPixelSize(R.dimen.wudaozi_album_thumbnail_size),
+                        mContext.resources.getDimensionPixelSize(R.dimen.wudaozi_spinner_thumbnail_size),
                         thumbnailPlaceHolder,
                         ivAlbumThumbnail,
                         it.thumbnail.uri

@@ -44,6 +44,11 @@ class WuDaozi private constructor(activity: Activity) {
         return this
     }
 
+    fun maxSelectableCount(@IntRange(from = 1) maxSelectedCount: Int): WuDaozi {
+        mConfig.mMaxSelectableCount = maxSelectedCount
+        return this
+    }
+
     fun start() {
         mActivityReference.get()?.let {
             WuDaoziActivity.start(it, REQUEST_CODE)

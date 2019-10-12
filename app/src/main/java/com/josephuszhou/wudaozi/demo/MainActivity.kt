@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
                 //.theme(R.style.CustomWuDaoziTheme) // set custom theme, change toolbar control normal color
                 //.imageLoader(GlideLoader()) // set custom image loader
                 .columnsCount(4) // set custom columns count
+                .maxSelectableCount(1) // set custom count of selectable images
                 .start() // start to select images
         }
     }

@@ -27,10 +27,13 @@ class Config {
 
     var mColumnsCount: Int = 4
 
+    var mMaxSelectableCount: Int = 1
+
     fun reset() {
         mThemeId = R.style.WuDaozi_Theme
         mImageLoader = GlideLoader()
         mColumnsCount = 4
+        mMaxSelectableCount = 1
     }
 
 }

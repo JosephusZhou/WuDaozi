@@ -8,23 +8,23 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.adapter.AlbumAdapter
 import com.josephuszhou.wudaozi.adapter.PhotoAdapter
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.AlbumEntity
 import com.josephuszhou.wudaozi.entity.PhotoEntity
-import com.josephuszhou.wudaozi.util.SizeUtil
 import com.josephuszhou.wudaozi.widget.AlbumSpinner
-import com.josephuszhou.wudaozi.widget.GridItemDecoration
+import com.josephuszhou.wudaozi.widget.PhotoGridView
 import kotlinx.android.synthetic.main.activity_wu_daozi.*
 
 class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener {
 
     private lateinit var albumList: ArrayList<AlbumEntity>
     private lateinit var photoList: ArrayList<PhotoEntity>
+
     private lateinit var albumSpinner: AlbumSpinner
+    private lateinit var photoGridView: PhotoGridView
 
     companion object {
         fun start(activity: Activity, requestCode: Int) {
@@ -58,21 +58,8 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
             setOnItemSelectedListener(this@WuDaoziActivity)
         }
 
-        // init recyclerview
-        val count = Config.getInstance().mColumnsCount
-        val divSize = SizeUtil.dp2px(this, 4f)
-        val imageSize = (SizeUtil.getScreenWidth(this) - divSize * count) / count
-
-        recyclerview.layoutManager = GridLayoutManager(this, count)
-        recyclerview.addItemDecoration(
-            GridItemDecoration(
-                Config.getInstance().mColumnsCount,
-                divSize,
-                divSize,
-                false
-            )
-        )
-        recyclerview.adapter = PhotoAdapter(this, imageSize, photoList)
+        // init photoGridView
+        photoGridView = PhotoGridView(this, recyclerview)
 
         queryData()
         showData()
@@ -154,7 +141,7 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
 
     override fun onItemSelected(position: Int) {
         if (position == 0) {
-            (recyclerview.adapter as PhotoAdapter).setData(photoList)
+            photoGridView.setData(photoList)
             return
         }
         val albumEntity = albumList[position]
@@ -164,6 +151,6 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
                 list.add(entity)
             }
         }
-        (recyclerview.adapter as PhotoAdapter).setData(list)
+        photoGridView.setData(list)
     }
 }

@@ -16,6 +16,8 @@ import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.AlbumEntity
 import com.josephuszhou.wudaozi.entity.PhotoEntity
 import com.josephuszhou.wudaozi.util.SizeUtil
+import com.josephuszhou.wudaozi.widget.AlbumSpinner
+import com.josephuszhou.wudaozi.widget.GridItemDecoration
 import kotlinx.android.synthetic.main.activity_wu_daozi.*
 
 class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener {

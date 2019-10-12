@@ -1,4 +1,4 @@
-package com.josephuszhou.wudaozi.view
+package com.josephuszhou.wudaozi.widget
 
 import android.graphics.Rect
 import android.view.View

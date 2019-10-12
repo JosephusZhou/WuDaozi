@@ -1,4 +1,4 @@
-package com.josephuszhou.wudaozi.view
+package com.josephuszhou.wudaozi.widget
 
 import android.content.Context
 import android.graphics.PorterDuff

@@ -14,7 +14,7 @@
         android:layout_height="?actionBarSize"
         android:theme="?toolbar_theme">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_album"
             android:layout_width="wrap_content"
             android:layout_height="?actionBarSize"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/wudaozi_toolbar_album_title_text_size"
             tools:text="Camera" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_sure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

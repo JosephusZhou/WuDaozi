@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.PorterDuff
 import android.view.View
 import android.widget.ListPopupWindow
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.adapter.AlbumAdapter
 import com.josephuszhou.wudaozi.entity.AlbumEntity
@@ -20,7 +20,7 @@ class AlbumSpinner(context: Context) {
 
     private var mAlbumAdapter: AlbumAdapter? = null
     private var mOnItemSelectedListener: OnItemSelectedListener? = null
-    private var mSelectedTextView: TextView? = null
+    private var mSelectedTextView: AppCompatTextView? = null
 
     init {
         mListPopupWindow.isModal = true
@@ -55,7 +55,7 @@ class AlbumSpinner(context: Context) {
         mListPopupWindow.anchorView = view
     }
 
-    fun setSelectedTextView(textView: TextView) {
+    fun setSelectedTextView(textView: AppCompatTextView) {
         mSelectedTextView = textView
 
         mSelectedTextView?.let {

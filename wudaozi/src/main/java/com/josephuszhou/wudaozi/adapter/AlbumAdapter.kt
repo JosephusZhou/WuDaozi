@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.AlbumEntity
@@ -43,9 +43,9 @@ class AlbumAdapter(private var mContext: Context, private var mList: ArrayList<A
             @SuppressLint("InflateParams")
             var contentView: View =
                 LayoutInflater.from(mContext).inflate(R.layout.layout_album_item, null)
-            private var ivAlbumThumbnail: ImageView
-            private var tvAlbumName: TextView
-            private var tvAlbumPhotoCount: TextView
+            private var ivAlbumThumbnail: AppCompatImageView
+            private var tvAlbumName: AppCompatTextView
+            private var tvAlbumPhotoCount: AppCompatTextView
 
             private var albumEntity: AlbumEntity? = null
 

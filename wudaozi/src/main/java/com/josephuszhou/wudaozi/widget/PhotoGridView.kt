@@ -14,7 +14,7 @@ import com.josephuszhou.wudaozi.util.SizeUtil
  * @date 2019-10-12
  * @desc
  */
-class PhotoGridView(context: Context, private val mRecyclerView: RecyclerView) {
+class PhotoGridView(context: Context, mRecyclerView: RecyclerView) {
 
     private var mPhotoAdapter: PhotoAdapter
 

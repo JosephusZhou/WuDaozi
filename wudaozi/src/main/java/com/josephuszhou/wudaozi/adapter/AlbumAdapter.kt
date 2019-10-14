@@ -16,6 +16,11 @@ import com.josephuszhou.wudaozi.util.AttrUtil
 class AlbumAdapter(private var mContext: Context, private var mList: ArrayList<AlbumEntity>) :
     BaseAdapter() {
 
+    fun setData(list: ArrayList<AlbumEntity>) {
+        mList = list
+        notifyDataSetChanged()
+    }
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewHolder: ViewHolder = if (convertView == null) {
             ViewHolder(mContext)

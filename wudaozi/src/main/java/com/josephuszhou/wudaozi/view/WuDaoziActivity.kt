@@ -9,8 +9,6 @@ import android.text.TextUtils
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.josephuszhou.wudaozi.R
-import com.josephuszhou.wudaozi.adapter.AlbumAdapter
-import com.josephuszhou.wudaozi.adapter.PhotoAdapter
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.AlbumEntity
 import com.josephuszhou.wudaozi.entity.PhotoEntity
@@ -134,7 +132,7 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
     }
 
     private fun showData() {
-        albumSpinner.setAlbumAdapter(AlbumAdapter(this, albumList))
+        albumSpinner.setData(albumList)
         albumSpinner.setSelected(0)
         onItemSelected(0)
     }

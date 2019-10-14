@@ -18,13 +18,17 @@ class AlbumSpinner(context: Context) {
 
     private var mListPopupWindow: ListPopupWindow = ListPopupWindow(context, null)
 
-    private var mAlbumAdapter: AlbumAdapter? = null
+    private var mAlbumAdapter: AlbumAdapter
     private var mOnItemSelectedListener: OnItemSelectedListener? = null
     private var mSelectedTextView: AppCompatTextView? = null
 
     init {
         mListPopupWindow.isModal = true
         mListPopupWindow.setContentWidth(context.resources.getDimensionPixelSize(R.dimen.wudaozi_spinner_width))
+
+        mAlbumAdapter = AlbumAdapter(context, ArrayList())
+        mListPopupWindow.setAdapter(mAlbumAdapter)
+
         mListPopupWindow.setOnItemClickListener { _, _, position, _ ->
             onselected(position)
             mOnItemSelectedListener?.onItemSelected(position)
@@ -42,9 +46,8 @@ class AlbumSpinner(context: Context) {
         onselected(position)
     }
 
-    fun setAlbumAdapter(adapter: AlbumAdapter) {
-        mAlbumAdapter = adapter
-        mListPopupWindow.setAdapter(adapter)
+    fun setData(list: ArrayList<AlbumEntity>) {
+        mAlbumAdapter.setData(list)
     }
 
     fun setOnItemSelectedListener(listener: OnItemSelectedListener) {

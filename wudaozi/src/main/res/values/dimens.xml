@@ -8,6 +8,7 @@
     <dimen name="wudaozi_spinner_Item_margin">8dp</dimen>
     <dimen name="wudaozi_toolbar_album_title_size">200dp</dimen>
     <dimen name="wudaozi_spinner_width">250dp</dimen>
+    <dimen name="wudaozi_grid_div_size">4dp</dimen>
 
     <!-- text size -->
     <dimen name="wudaozi_toolbar_sure_text_size">16sp</dimen>

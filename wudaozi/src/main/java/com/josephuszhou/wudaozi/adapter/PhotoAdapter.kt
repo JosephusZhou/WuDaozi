@@ -1,23 +1,18 @@
 package com.josephuszhou.wudaozi.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.josephuszhou.wudaozi.R
-import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.PhotoEntity
-import com.josephuszhou.wudaozi.util.AttrUtil
+import com.josephuszhou.wudaozi.widget.PhotoGrid
 
-class PhotoAdapter(private val mContext: Context, private val size: Int, private var mList: ArrayList<PhotoEntity>): RecyclerView.Adapter<PhotoAdapter.Companion.VH>() {
-
-    private val thumbnailPlaceHolder = AttrUtil.getDrawable(mContext, R.attr.thumbnail_placeholder)
+class PhotoAdapter(private var mList: ArrayList<PhotoEntity>): RecyclerView.Adapter<PhotoAdapter.Companion.VH>() {
 
     companion object {
         class VH(v: View): RecyclerView.ViewHolder(v) {
-            val ivPhoto: AppCompatImageView = v.findViewById(R.id.iv_photo)
+            val mPhotoGrid: PhotoGrid = v as PhotoGrid
         }
     }
 
@@ -34,6 +29,6 @@ class PhotoAdapter(private val mContext: Context, private val size: Int, private
     override fun getItemCount(): Int = mList.size
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        Config.getInstance().mImageLoader.loadThumbnail(mContext, size, thumbnailPlaceHolder, holder.ivPhoto, mList[position].uri)
+        holder.mPhotoGrid.setData(mList[position])
     }
 }

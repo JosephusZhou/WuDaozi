@@ -37,7 +37,7 @@ class AlbumSpinner(context: Context) {
 
     private fun onselected(position: Int) {
         mListPopupWindow.dismiss()
-        val albumEntity = mAlbumAdapter?.getItem(position) as AlbumEntity
+        val albumEntity = mAlbumAdapter.getItem(position) as AlbumEntity
         mSelectedTextView?.text = albumEntity.bucketName
     }
 
@@ -58,6 +58,7 @@ class AlbumSpinner(context: Context) {
         mListPopupWindow.anchorView = view
     }
 
+    @Suppress("DEPRECATION")
     fun setSelectedTextView(textView: AppCompatTextView) {
         mSelectedTextView = textView
 
@@ -68,7 +69,7 @@ class AlbumSpinner(context: Context) {
             right.setColorFilter(color, PorterDuff.Mode.SRC_IN)
 
             it.setOnClickListener {
-                mAlbumAdapter?.let { it1 ->
+                mAlbumAdapter.let { it1 ->
                     val itemHeight =
                         it.resources.getDimensionPixelSize(R.dimen.wudaozi_spinner_item_height)
                     mListPopupWindow.height = if (it1.count > MAX_SHOW_COUNT) {

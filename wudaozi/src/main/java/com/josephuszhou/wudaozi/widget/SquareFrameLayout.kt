@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 
-class SquareFrameLayout : FrameLayout {
+open class SquareFrameLayout : FrameLayout {
 
     constructor(context: Context) : super(context)
 

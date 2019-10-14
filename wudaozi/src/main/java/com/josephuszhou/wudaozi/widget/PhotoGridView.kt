@@ -1,13 +1,12 @@
 package com.josephuszhou.wudaozi.widget
 
-import android.app.Activity
 import android.content.Context
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.adapter.PhotoAdapter
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.PhotoEntity
-import com.josephuszhou.wudaozi.util.SizeUtil
 
 /**
  * @author senfeng.zhou
@@ -20,8 +19,7 @@ class PhotoGridView(context: Context, mRecyclerView: RecyclerView) {
 
     init {
         val count = Config.getInstance().mColumnsCount
-        val divSize = SizeUtil.dp2px(context, 4f)
-        val imageSize = (SizeUtil.getScreenWidth(context as Activity) - divSize * count) / count
+        val divSize = context.resources.getDimensionPixelSize(R.dimen.wudaozi_grid_div_size)
 
         mRecyclerView.layoutManager = GridLayoutManager(context, count)
         mRecyclerView.addItemDecoration(
@@ -33,7 +31,7 @@ class PhotoGridView(context: Context, mRecyclerView: RecyclerView) {
             )
         )
 
-        mPhotoAdapter = PhotoAdapter(context, imageSize, ArrayList())
+        mPhotoAdapter = PhotoAdapter(ArrayList())
         mRecyclerView.adapter = mPhotoAdapter
     }
 

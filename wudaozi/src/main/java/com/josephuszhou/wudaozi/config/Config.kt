@@ -3,10 +3,12 @@ package com.josephuszhou.wudaozi.config
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.imageloader.impl.GlideLoader
+import com.josephuszhou.wudaozi.widget.SelectedData
 
 class Config {
 
     companion object {
+        const val UNCHECKED_NUM = Int.MIN_VALUE
 
         fun getInstance() = InstanceHolder.INSTANCE
 
@@ -29,11 +31,14 @@ class Config {
 
     var mMaxSelectableCount: Int = 1
 
+    var mSelectedData = SelectedData()
+
     fun reset() {
         mThemeId = R.style.WuDaozi_Theme
         mImageLoader = GlideLoader()
         mColumnsCount = 4
         mMaxSelectableCount = 1
+        mSelectedData = SelectedData()
     }
 
 }

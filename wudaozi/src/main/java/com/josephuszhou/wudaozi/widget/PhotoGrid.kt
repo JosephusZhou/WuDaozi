@@ -62,6 +62,14 @@ class PhotoGrid : SquareFrameLayout, View.OnClickListener {
         Config.getInstance().mImageLoader.loadThumbnail(context, mSize, thumbnailPlaceHolder, mIvThumbnail, mPhotoEntity?.uri)
     }
 
+    fun setCheckEnabled(enabled: Boolean) {
+        mCheckView.isEnabled = enabled
+    }
+
+    fun setCheckNum(num: Int) {
+        mCheckView.setCheckedNum(num)
+    }
+
     override fun onClick(v: View?) {
         when(v) {
             mIvThumbnail -> {

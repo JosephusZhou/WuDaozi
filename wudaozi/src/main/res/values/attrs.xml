@@ -7,4 +7,7 @@
     <attr name="spinner_album_title_text_color" format="reference|color" />
     <attr name="spinner_album_count_text_color" format="reference|color" />
     <attr name="thumbnail_placeholder" format="reference|color" />
+    <attr name="check_stroke_color" format="reference|color" />
+    <attr name="check_fill_color" format="reference|color" />
+    <attr name="check_text_color" format="reference|color" />
 </resources>

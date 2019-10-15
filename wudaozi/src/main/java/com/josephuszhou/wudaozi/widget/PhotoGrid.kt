@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.config.Config
@@ -24,9 +23,13 @@ class PhotoGrid : SquareFrameLayout, View.OnClickListener {
 
     private var mIvThumbnail: AppCompatImageView
 
+    private var mCheckView: CheckView
+
     private var mPhotoEntity: PhotoEntity? = null
 
-    private var resize: Int
+    private var mSize: Int
+
+    private var mOnPhotoGridClickListener: OnPhotoGridClickListener? = null
 
     constructor(context: Context) : super(context)
 
@@ -41,27 +44,50 @@ class PhotoGrid : SquareFrameLayout, View.OnClickListener {
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_photo_grid, this, true)
         mIvThumbnail = findViewById(R.id.iv_photo_thumbnail)
+        mCheckView = findViewById(R.id.check_view)
 
         mIvThumbnail.setOnClickListener(this)
+        mCheckView.setOnClickListener(this)
 
         val count = Config.getInstance().mColumnsCount
         val divSize = context.resources.getDimensionPixelSize(R.dimen.wudaozi_grid_div_size)
-        resize = (SizeUtil.getScreenWidth(context as Activity) - divSize * count) / count
+        mSize = (SizeUtil.getScreenWidth(context as Activity) - divSize * count) / count
+
+        mCheckView.layoutParams.width = mSize / 4
+        mCheckView.layoutParams.height = mSize / 4
     }
 
     fun setData(photoEntity: PhotoEntity) {
         mPhotoEntity = photoEntity
-        Config.getInstance().mImageLoader.loadThumbnail(context, resize, thumbnailPlaceHolder, mIvThumbnail, mPhotoEntity?.uri)
+        Config.getInstance().mImageLoader.loadThumbnail(context, mSize, thumbnailPlaceHolder, mIvThumbnail, mPhotoEntity?.uri)
     }
 
     override fun onClick(v: View?) {
         when(v) {
             mIvThumbnail -> {
-                mPhotoEntity?.let {
-                    Toast.makeText(context, it.id.toString(), Toast.LENGTH_SHORT).show()
+                mOnPhotoGridClickListener?.let {
+                    mPhotoEntity?.let { entity ->
+                        it.onThumbnailClick(mIvThumbnail, entity)
+                    }
+                }
+            }
+            mCheckView -> {
+                mOnPhotoGridClickListener?.let {
+                    mPhotoEntity?.let { entity ->
+                        it.onCheckViewClick(mCheckView, entity)
+                    }
                 }
             }
         }
+    }
+
+    fun setOnPhotoGridClickListener(onPhotoGridClickListener: OnPhotoGridClickListener) {
+        mOnPhotoGridClickListener = onPhotoGridClickListener
+    }
+
+    interface OnPhotoGridClickListener {
+        fun onThumbnailClick(thumbnail: AppCompatImageView, photoEntity: PhotoEntity)
+        fun onCheckViewClick(checkView: CheckView, photoEntity: PhotoEntity)
     }
 
 }

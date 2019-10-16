@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.josephuszhou.wudaozi.R
+import com.josephuszhou.wudaozi.WuDaozi
+import com.josephuszhou.wudaozi.adapter.PhotoAdapter
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.AlbumEntity
 import com.josephuszhou.wudaozi.entity.PhotoEntity
@@ -16,7 +19,7 @@ import com.josephuszhou.wudaozi.widget.AlbumSpinner
 import com.josephuszhou.wudaozi.widget.PhotoGridView
 import kotlinx.android.synthetic.main.activity_wu_daozi.*
 
-class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener {
+class WuDaoziActivity : AppCompatActivity(), View.OnClickListener, AlbumSpinner.OnItemSelectedListener, PhotoAdapter.OnCheckStateListener {
 
     private lateinit var albumList: ArrayList<AlbumEntity>
     private lateinit var photoList: ArrayList<PhotoEntity>
@@ -44,23 +47,42 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        tv_sure.setOnClickListener(this)
+
         // init data
         albumList = ArrayList()
         photoList = ArrayList()
 
         // init spinner
-        albumSpinner = AlbumSpinner(this)
-        albumSpinner.apply {
+        albumSpinner = AlbumSpinner(this).apply {
             setAnchorView(tv_album)
             setSelectedTextView(tv_album)
             setOnItemSelectedListener(this@WuDaoziActivity)
         }
 
         // init photoGridView
-        photoGridView = PhotoGridView(this, recyclerview)
+        photoGridView = PhotoGridView(this, recyclerview).apply {
+            setOnCheckStateListener(this@WuDaoziActivity)
+        }
 
         queryData()
         showData()
+    }
+
+    override fun onClick(v: View?) {
+        when(v) {
+            tv_sure -> {
+                val uriList = Config.getInstance().mSelectedData.getUriList()
+                val bundle = Bundle().apply {
+                    putParcelableArrayList(WuDaozi.BUNDLE_KEY, uriList)
+                }
+                val intent = Intent().apply {
+                    putExtras(bundle)
+                }
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -70,6 +92,7 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
         } else super.onOptionsItemSelected(item)
     }
 
+    // soon will be moved to data model
     private fun queryData() {
         val externalURI = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 
@@ -150,5 +173,15 @@ class WuDaoziActivity : AppCompatActivity(), AlbumSpinner.OnItemSelectedListener
             }
         }
         photoGridView.setData(list)
+    }
+
+    override fun onCheckStateChanged() {
+        val selectedCount = Config.getInstance().mSelectedData.selectedCount()
+        tv_sure.isEnabled = selectedCount > 0
+        tv_sure.text = if (selectedCount > 0) {
+            getString(R.string.wudaozi_sure_text_with_num, selectedCount)
+        } else {
+            getString(R.string.wudaozi_sure_text)
+        }
     }
 }

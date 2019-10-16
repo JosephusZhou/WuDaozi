@@ -1,9 +1,12 @@
 package com.josephuszhou.wudaozi.demo
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -61,8 +64,16 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             WuDaozi.REQUEST_CODE -> {
-                /*if (resultCode == Activity.RESULT_OK) {
-                }*/
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val bundle = data.extras
+                    bundle?.let {
+                        val uriList: ArrayList<Uri> = it.getParcelableArrayList<Uri>(WuDaozi.BUNDLE_KEY) as ArrayList<Uri>
+                        for(uri in uriList) {
+                            Log.e("WuDaozi", "->$uri")
+                        }
+                        Toast.makeText(this, "Return images count: ${uriList.size}", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             else -> super.onActivityResult(requestCode, resultCode, data)
         }

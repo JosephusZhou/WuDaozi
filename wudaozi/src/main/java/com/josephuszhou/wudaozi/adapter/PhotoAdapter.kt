@@ -14,12 +14,18 @@ import com.josephuszhou.wudaozi.widget.PhotoGrid
 class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
     RecyclerView.Adapter<PhotoAdapter.Companion.VH>(), PhotoGrid.OnPhotoGridClickListener {
 
-    private val mSelectedData = Config.getInstance().mSelectedData
-
     companion object {
         class VH(v: View) : RecyclerView.ViewHolder(v) {
             val mPhotoGrid: PhotoGrid = v as PhotoGrid
         }
+    }
+
+    private val mSelectedData = Config.getInstance().mSelectedData
+
+    private var mOnCheckStateListener: OnCheckStateListener? = null
+
+    fun setOnCheckStateListener(onCheckStateListener: OnCheckStateListener) {
+        mOnCheckStateListener = onCheckStateListener
     }
 
     fun setData(list: ArrayList<PhotoEntity>) {
@@ -65,14 +71,22 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
         val checkNum = mSelectedData.checkSelectedItem(photoEntity)
         if (checkNum > 0) {
             mSelectedData.removeSelectedItem(photoEntity)
-            notifyDataSetChanged()
+            notifyChanged()
         } else {
             if (!mSelectedData.maxSelected()) {
                 mSelectedData.addSelectedItem(photoEntity)
-                notifyDataSetChanged()
+                notifyChanged()
             }
         }
     }
 
+    private fun notifyChanged() {
+        notifyDataSetChanged()
+        mOnCheckStateListener?.onCheckStateChanged()
+    }
+
+    interface OnCheckStateListener {
+        fun onCheckStateChanged()
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.josephuszhou.wudaozi.widget
 
+import android.net.Uri
 import android.util.SparseArray
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.entity.PhotoEntity
@@ -41,6 +42,18 @@ class SelectedData {
 
     fun maxSelected(): Boolean {
         return mSelectedList.size == Config.getInstance().mMaxSelectableCount
+    }
+
+    fun selectedCount(): Int {
+        return mSelectedList.size
+    }
+
+    fun getUriList(): ArrayList<Uri> {
+        val uriList = ArrayList<Uri>()
+        for(entity in mSelectedList) {
+            uriList.add(entity.uri)
+        }
+        return uriList
     }
 
 }

@@ -15,6 +15,8 @@ class WuDaozi private constructor(activity: Activity) {
 
         const val REQUEST_CODE: Int = 9999
 
+        const val BUNDLE_KEY: String = "wudaozi_uri_list"
+
         fun with(activity: Activity) = WuDaozi(activity)
 
         fun with(fragment: Fragment) {

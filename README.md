@@ -1,6 +1,6 @@
 # WuDaozi
 
-Android image selector, inspired by [Matisse](https://github.com/zhihu/Matisse).
+Android image selector, inspired by [zhihu/Matisse](https://github.com/zhihu/Matisse).
 
 It may takes a long time, but doesn't matter, Rome wasn't built in a day.
 
@@ -11,7 +11,14 @@ It may takes a long time, but doesn't matter, Rome wasn't built in a day.
 * Switch albums to display different images ✔
 * Select multiple images in sequence ✔
 * Filter image size
+* Filter image type
 * Preview image
 * Uniform resource definition, open resource attributes ✔
 * Decouple code
 * Performance optimization
+
+### Features that may be added
+
+* Video selection
+    * Display all videos as list
+    * Video preview and play

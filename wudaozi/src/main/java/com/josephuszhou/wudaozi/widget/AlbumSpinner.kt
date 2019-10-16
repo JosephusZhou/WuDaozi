@@ -65,7 +65,8 @@ class AlbumSpinner(context: Context) {
         mSelectedTextView?.let {
             // tint dropdown arrow icon
             val right = it.compoundDrawablesRelative[2]
-            val color = AttrUtil.getcolor(it.context, R.attr.toolbar_album_text_color)
+            val color = AttrUtil.getcolor(it.context, R.attr.toolbar_album_text_color,
+                R.color.wudaozi_toolbar_control_normal_color)
             right.setColorFilter(color, PorterDuff.Mode.SRC_IN)
 
             it.setOnClickListener {

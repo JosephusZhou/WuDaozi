@@ -6,9 +6,9 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.config.Config.Companion.UNCHECKED_NUM
+import com.josephuszhou.wudaozi.util.AttrUtil
 
 /**
  * @author senfeng.zhou
@@ -27,11 +27,11 @@ class CheckView: View {
 
     private var mTextSize: Float = context.resources.getDimension(R.dimen.wudaozi_check_text_size)
 
-    private var mStrokeColor: Int
+    private var mStrokeColor: Int = AttrUtil.getcolor(context, R.attr.check_stroke_color, R.color.wudaozi_check_stroke_color)
 
-    private var mFillColor: Int
+    private var mFillColor: Int = AttrUtil.getcolor(context, R.attr.check_fill_color, R.color.wudaozi_check_fill_color)
 
-    private var mTextColor: Int
+    private var mTextColor: Int = AttrUtil.getcolor(context, R.attr.check_text_color, R.color.wudaozi_check_text_color)
 
     private var mEnabled: Boolean = true
 
@@ -44,18 +44,6 @@ class CheckView: View {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int): super(context, attrs, defStyleAttr)
 
     init {
-        var typedArray = context.theme.obtainStyledAttributes(intArrayOf(R.attr.check_stroke_color))
-        mStrokeColor = typedArray.getColor(0, ResourcesCompat.getColor(resources, R.color.wudaozi_check_stroke_color, context.theme))
-        typedArray.recycle()
-
-        typedArray = context.theme.obtainStyledAttributes(intArrayOf(R.attr.check_fill_color))
-        mFillColor = typedArray.getColor(0, ResourcesCompat.getColor(resources, R.color.wudaozi_check_fill_color, context.theme))
-        typedArray.recycle()
-
-        typedArray = context.theme.obtainStyledAttributes(intArrayOf(R.attr.check_text_color))
-        mTextColor = typedArray.getColor(0, ResourcesCompat.getColor(resources, R.color.wudaozi_check_text_color, context.theme))
-        typedArray.recycle()
-
         initStrokePaint()
         initBackgroundPaint()
         initTextPaint()

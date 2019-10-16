@@ -3,6 +3,8 @@ package com.josephuszhou.wudaozi.util
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
+import androidx.core.content.res.ResourcesCompat
 
 /**
  * @author senfeng.zhou
@@ -12,9 +14,10 @@ import androidx.annotation.AttrRes
 class AttrUtil {
 
     companion object {
-        fun getcolor(context: Context, @AttrRes attrId: Int): Int {
+        fun getcolor(context: Context, @AttrRes attrId: Int, @ColorRes defaultColorId: Int): Int {
             val typedArray = context.theme.obtainStyledAttributes(intArrayOf(attrId))
-            val color = typedArray.getColor(0, 0)
+            val color = typedArray.getColor(0, ResourcesCompat.getColor(
+                context.resources, defaultColorId, context.theme))
             typedArray.recycle()
             return color
         }

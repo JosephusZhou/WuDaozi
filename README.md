@@ -19,8 +19,6 @@ It may takes a long time, but doesn't matter, Rome wasn't built in a day.
 
 ### Exist Bugs
 
-* The selected state of the reused view is incorrect when scrolling
-
 ### Features that may be added
 
 * Video selection

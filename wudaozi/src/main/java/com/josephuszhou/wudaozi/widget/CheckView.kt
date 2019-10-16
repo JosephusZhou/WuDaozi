@@ -99,10 +99,10 @@ class CheckView: View {
     }
 
     fun setCheckedNum(checkedNum: Int) {
-        if (checkedNum <= 0)
-            return
-        mCheckedNum = checkedNum
-        invalidate()
+        if (mCheckedNum != checkedNum) {
+            mCheckedNum = checkedNum
+            invalidate()
+        }
     }
 
 }

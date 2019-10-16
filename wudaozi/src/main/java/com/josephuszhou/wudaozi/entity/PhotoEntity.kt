@@ -7,7 +7,6 @@ class PhotoEntity {
     var id: Long = -1
     lateinit var uri: Uri
     lateinit var albumName: String
-
-    var selected: Boolean = false
-    var selectIndex: Int = 1
+    var size: Int = -1
+    lateinit var mimeType: String
 }

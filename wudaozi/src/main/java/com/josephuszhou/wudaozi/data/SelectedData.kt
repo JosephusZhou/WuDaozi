@@ -1,4 +1,4 @@
-package com.josephuszhou.wudaozi.widget
+package com.josephuszhou.wudaozi.data
 
 import android.net.Uri
 import android.util.SparseArray

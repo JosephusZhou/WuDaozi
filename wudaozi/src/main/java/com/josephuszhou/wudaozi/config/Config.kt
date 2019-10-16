@@ -3,7 +3,7 @@ package com.josephuszhou.wudaozi.config
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.imageloader.impl.GlideLoader
-import com.josephuszhou.wudaozi.widget.SelectedData
+import com.josephuszhou.wudaozi.data.SelectedData
 
 class Config {
 

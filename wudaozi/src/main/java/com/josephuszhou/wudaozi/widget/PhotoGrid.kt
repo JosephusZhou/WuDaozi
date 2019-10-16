@@ -25,6 +25,8 @@ class PhotoGrid : SquareFrameLayout, View.OnClickListener {
 
     private var mCheckView: CheckView
 
+    private var mMaskView: View
+
     private var mPhotoEntity: PhotoEntity? = null
 
     private var mSize: Int
@@ -44,6 +46,7 @@ class PhotoGrid : SquareFrameLayout, View.OnClickListener {
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_photo_grid, this, true)
         mIvThumbnail = findViewById(R.id.iv_photo_thumbnail)
+        mMaskView = findViewById(R.id.v_mask)
         mCheckView = findViewById(R.id.check_view)
 
         mIvThumbnail.setOnClickListener(this)
@@ -68,6 +71,11 @@ class PhotoGrid : SquareFrameLayout, View.OnClickListener {
 
     fun setCheckNum(num: Int) {
         mCheckView.setCheckedNum(num)
+        if (num > 0) {
+            mMaskView.visibility = View.VISIBLE
+        } else {
+            mMaskView.visibility = View.GONE
+        }
     }
 
     override fun onClick(v: View?) {

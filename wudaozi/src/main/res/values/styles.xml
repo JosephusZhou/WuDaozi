@@ -18,6 +18,8 @@
         <item name="spinner_album_count_text_color">@color/wudaozi_album_count_text_color</item>
         <!-- Photo thumbnail placeholder for image select activity -->
         <item name="thumbnail_placeholder">@color/wudaozi_thumbnail_placeholder_color</item>
+        <!-- Photo thumbnail mask color for image select activity -->
+        <item name="thumbnail_mask_color">@color/wudaozi_thumbnail_mask_color</item>
         <!-- Photo thumbnail check circle stroke color -->
         <item name="check_stroke_color">@color/wudaozi_check_stroke_color</item>
         <!-- Photo thumbnail check circle fill color -->

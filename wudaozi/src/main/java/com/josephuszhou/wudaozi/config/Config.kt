@@ -4,6 +4,7 @@ import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.imageloader.impl.GlideLoader
 import com.josephuszhou.wudaozi.data.SelectedData
+import com.josephuszhou.wudaozi.filter.Filter
 
 class Config {
 
@@ -33,12 +34,15 @@ class Config {
 
     var mSelectedData = SelectedData()
 
+    var mFilter: Filter? = null
+
     fun reset() {
         mThemeId = R.style.WuDaozi_Theme
         mImageLoader = GlideLoader()
         mColumnsCount = 4
         mMaxSelectableCount = 1
         mSelectedData = SelectedData()
+        mFilter = null
     }
 
 }

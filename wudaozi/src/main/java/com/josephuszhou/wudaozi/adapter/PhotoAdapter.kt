@@ -73,7 +73,7 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
             mSelectedData.removeSelectedItem(photoEntity)
             notifyChanged()
         } else {
-            if (!mSelectedData.maxSelected()) {
+            if (!mSelectedData.maxSelected() && mSelectedData.isAcceptable(checkView.context, photoEntity)) {
                 mSelectedData.addSelectedItem(photoEntity)
                 notifyChanged()
             }

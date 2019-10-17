@@ -1,6 +1,8 @@
 <resources>
-    <string name="wudaozi_app_name">WuDaozi</string>
     <string name="wudaozi_sure_text">Sure</string>
     <string name="wudaozi_sure_text_with_num">Sure(%d)</string>
     <string name="wudaozi_all">All</string>
+    <string name="wudaozi_smaller_than_minsize">The selected image cannot be smaller than %s</string>
+    <string name="wudaozi_larger_than_maxsize">The selected image cannot be larger than %s</string>
+    <string name="wudaozi_between_minsize_maxsize">The selected image can only be between %s and %s</string>
 </resources>

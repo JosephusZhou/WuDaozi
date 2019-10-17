@@ -1,5 +1,6 @@
 package com.josephuszhou.wudaozi.data
 
+import android.content.Context
 import android.net.Uri
 import android.util.SparseArray
 import com.josephuszhou.wudaozi.config.Config
@@ -54,6 +55,13 @@ class SelectedData {
             uriList.add(entity.uri)
         }
         return uriList
+    }
+
+    fun isAcceptable(context: Context, entity: PhotoEntity): Boolean {
+        Config.getInstance().mFilter?.let {
+            return it.filter(context, entity)
+        }
+        return true
     }
 
 }

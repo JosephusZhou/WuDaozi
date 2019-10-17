@@ -5,6 +5,7 @@ import androidx.annotation.IntRange
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import com.josephuszhou.wudaozi.config.Config
+import com.josephuszhou.wudaozi.filter.Filter
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.view.WuDaoziActivity
 import java.lang.ref.WeakReference
@@ -48,6 +49,12 @@ class WuDaozi private constructor(activity: Activity) {
 
     fun maxSelectableCount(@IntRange(from = 1) maxSelectedCount: Int): WuDaozi {
         mConfig.mMaxSelectableCount = maxSelectedCount
+        return this
+    }
+
+    fun filter(@IntRange(from = 0) minByteSize: Int = Filter.Size.NO_FILTER_SIZE,
+               @IntRange(from = 0) maxByteSize: Int = Filter.Size.NO_FILTER_SIZE): WuDaozi {
+        mConfig.mFilter = Filter(Filter.Size(minByteSize, maxByteSize))
         return this
     }
 

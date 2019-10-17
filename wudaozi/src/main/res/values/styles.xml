@@ -26,6 +26,12 @@
         <item name="check_fill_color">@color/wudaozi_check_fill_color</item>
         <!-- Photo thumbnail check circle stroke color -->
         <item name="check_text_color">@color/wudaozi_check_text_color</item>
+        <!-- Filter Text -->
+        <item name="smaller_than_minsize_text">@string/wudaozi_smaller_than_minsize</item>
+        <!-- Filter Text -->
+        <item name="larger_than_maxsize_text">@string/wudaozi_larger_than_maxsize</item>
+        <!-- Filter Text -->
+        <item name="between_minsize_maxsize_text">@string/wudaozi_between_minsize_maxsize</item>
     </style>
 
     <style name="WuDaozi.Toolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">

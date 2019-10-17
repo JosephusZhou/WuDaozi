@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 //.imageLoader(GlideLoader()) // set custom image loader
                 .columnsCount(4) // set custom columns count
                 .maxSelectableCount(9) // set custom count of selectable images
+                .filter(minByteSize = 1024 * 100) // set size filter, min is 100KB
                 .start() // start to select images
         }
     }

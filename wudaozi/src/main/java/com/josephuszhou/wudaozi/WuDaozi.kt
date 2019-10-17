@@ -53,8 +53,17 @@ class WuDaozi private constructor(activity: Activity) {
     }
 
     fun filter(@IntRange(from = 0) minByteSize: Int = Filter.Size.NO_FILTER_SIZE,
-               @IntRange(from = 0) maxByteSize: Int = Filter.Size.NO_FILTER_SIZE): WuDaozi {
-        mConfig.mFilter = Filter(Filter.Size(minByteSize, maxByteSize))
+               @IntRange(from = 0) maxByteSize: Int = Filter.Size.NO_FILTER_SIZE,
+               selectedTypes: Array<String> = arrayOf(Filter.Type.ALL)): WuDaozi {
+        var size: Filter.Size? = null
+        var type: Filter.Type? = null
+        if (minByteSize != Filter.Size.NO_FILTER_SIZE || maxByteSize != Filter.Size.NO_FILTER_SIZE) {
+            size = Filter.Size(minByteSize, maxByteSize)
+        }
+        if (!selectedTypes.contains(Filter.Type.ALL)) {
+            type = Filter.Type(selectedTypes)
+        }
+        mConfig.mFilter = Filter(size, type)
         return this
     }
 

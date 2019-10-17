@@ -11,7 +11,7 @@ It may takes a long time, but doesn't matter, Rome wasn't built in a day.
 * Switch albums to display different images ✔
 * Select multiple images in sequence ✔
 * Filter image size ✔
-* Filter image type
+* Filter image type ✔
 * Preview image
 * Uniform resource definition, open resource attributes ✔
 * Decouple code

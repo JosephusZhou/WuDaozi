@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.josephuszhou.wudaozi.R
-import com.josephuszhou.wudaozi.config.Config
+import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.entity.PhotoEntity
 import com.josephuszhou.wudaozi.widget.CheckView
 import com.josephuszhou.wudaozi.widget.PhotoGrid
@@ -20,7 +20,7 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
         }
     }
 
-    private val mSelectedData = Config.getInstance().mSelectedData
+    private val mSelectedData = SelectedData.getInstance()
 
     private var mOnCheckStateListener: OnCheckStateListener? = null
 
@@ -55,10 +55,10 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
         } else {
             if (mSelectedData.maxSelected()) {
                 grid.setCheckEnabled(false)
-                grid.setCheckNum(Config.UNCHECKED_NUM)
+                grid.setCheckNum(CheckView.UNCHECKED_NUM)
             } else {
                 grid.setCheckEnabled(true)
-                grid.setCheckNum(Config.UNCHECKED_NUM)
+                grid.setCheckNum(CheckView.UNCHECKED_NUM)
             }
         }
     }

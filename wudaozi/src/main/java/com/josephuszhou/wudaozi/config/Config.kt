@@ -1,16 +1,13 @@
 package com.josephuszhou.wudaozi.config
 
 import com.josephuszhou.wudaozi.R
+import com.josephuszhou.wudaozi.filter.Filter
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.imageloader.impl.GlideLoader
-import com.josephuszhou.wudaozi.data.SelectedData
-import com.josephuszhou.wudaozi.filter.Filter
 
-class Config {
+class Config private constructor() {
 
     companion object {
-        const val UNCHECKED_NUM = Int.MIN_VALUE
-
         fun getInstance() = InstanceHolder.INSTANCE
 
         fun getInitialInstance(): Config {
@@ -32,8 +29,6 @@ class Config {
 
     var mMaxSelectableCount: Int = 1
 
-    var mSelectedData = SelectedData()
-
     var mFilter: Filter? = null
 
     fun reset() {
@@ -41,7 +36,6 @@ class Config {
         mImageLoader = GlideLoader()
         mColumnsCount = 4
         mMaxSelectableCount = 1
-        mSelectedData = SelectedData()
         mFilter = null
     }
 

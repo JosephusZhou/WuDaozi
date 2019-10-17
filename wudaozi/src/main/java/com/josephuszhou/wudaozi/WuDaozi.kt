@@ -5,6 +5,7 @@ import androidx.annotation.IntRange
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import com.josephuszhou.wudaozi.config.Config
+import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.filter.Filter
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.view.WuDaoziActivity
@@ -31,6 +32,8 @@ class WuDaozi private constructor(activity: Activity) {
     private val mActivityReference = WeakReference<Activity>(activity)
 
     private val mConfig = Config.getInitialInstance()
+
+    private val mSelectedData = SelectedData.getInitialInstance()
 
     fun theme(@StyleRes themeId: Int):WuDaozi {
         mConfig.mThemeId = themeId

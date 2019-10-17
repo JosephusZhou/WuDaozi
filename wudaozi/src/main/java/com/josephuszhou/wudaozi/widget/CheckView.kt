@@ -7,7 +7,6 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
 import com.josephuszhou.wudaozi.R
-import com.josephuszhou.wudaozi.config.Config.Companion.UNCHECKED_NUM
 import com.josephuszhou.wudaozi.util.AttrUtil
 
 /**
@@ -16,6 +15,10 @@ import com.josephuszhou.wudaozi.util.AttrUtil
  * @desc
  */
 class CheckView: View {
+
+    companion object {
+        const val UNCHECKED_NUM = Int.MIN_VALUE
+    }
 
     private var mStrokePaint = Paint()
 

@@ -12,6 +12,7 @@ import com.josephuszhou.wudaozi.WuDaozi
 import com.josephuszhou.wudaozi.adapter.PhotoAdapter
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.data.PhotoData
+import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.entity.PhotoEntity
 import com.josephuszhou.wudaozi.widget.AlbumSpinner
 import com.josephuszhou.wudaozi.widget.PhotoGridView
@@ -75,7 +76,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     override fun onClick(v: View?) {
         when(v) {
             tv_sure -> {
-                val uriList = Config.getInstance().mSelectedData.getUriList()
+                val uriList = SelectedData.getInstance().getUriList()
                 val bundle = Bundle().apply {
                     putParcelableArrayList(WuDaozi.BUNDLE_KEY, uriList)
                 }
@@ -117,7 +118,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onCheckStateChanged() {
-        val selectedCount = Config.getInstance().mSelectedData.selectedCount()
+        val selectedCount = SelectedData.getInstance().selectedCount()
         tv_sure.isEnabled = selectedCount > 0
         tv_sure.text = if (selectedCount > 0) {
             getString(R.string.wudaozi_sure_text_with_num, selectedCount)

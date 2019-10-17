@@ -11,11 +11,30 @@ import com.josephuszhou.wudaozi.entity.PhotoEntity
  * @date 2019-10-15
  * @desc
  */
-class SelectedData {
+class SelectedData private constructor() {
+
+    companion object {
+        fun getInstance() = InstanceHolder.INSTANCE
+
+        fun getInitialInstance(): SelectedData {
+            val instance = getInstance()
+            instance.reset()
+            return instance
+        }
+    }
+
+    private object InstanceHolder {
+        val INSTANCE = SelectedData()
+    }
 
     private var mSelectedList = ArrayList<PhotoEntity>()
 
     private var mSelectedMap = SparseArray<Long>()
+
+    fun reset() {
+        mSelectedList = ArrayList()
+        mSelectedMap = SparseArray()
+    }
 
     fun addSelectedItem(entity: PhotoEntity) {
         mSelectedList.add(entity)

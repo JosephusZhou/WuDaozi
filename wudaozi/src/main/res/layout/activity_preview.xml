@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    tools:context=".view.PreviewActivity">
+
+    <it.sephiroth.android.library.imagezoom.ImageViewTouch
+        android:id="@+id/iv_touch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/layout_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.josephuszhou.wudaozi.widget.CheckView
+            android:id="@+id/check_view"
+            android:layout_width="20dp"
+            android:layout_height="?actionBarSize"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/wudaozi_toolbar_sure_text_margin_end" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="@dimen/wudaozi_toolbar_sure_text_margin_end"
+            android:text="back"
+            android:textSize="@dimen/wudaozi_toolbar_sure_text_size" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/wudaozi_toolbar_sure_text_margin_end"
+            android:text="@string/wudaozi_sure_text"
+            android:textSize="@dimen/wudaozi_toolbar_sure_text_size" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

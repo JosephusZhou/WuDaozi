@@ -17,6 +17,12 @@ class SizeUtil {
             activity.windowManager.defaultDisplay.getMetrics(displayMetrics)
             return displayMetrics.widthPixels
         }
+
+        fun getScreenHeight(activity: Activity): Int {
+            val displayMetrics = DisplayMetrics()
+            activity.windowManager.defaultDisplay.getMetrics(displayMetrics)
+            return displayMetrics.heightPixels
+        }
     }
 
 }

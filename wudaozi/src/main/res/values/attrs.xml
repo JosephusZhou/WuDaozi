@@ -15,4 +15,7 @@
     <attr name="larger_than_maxsize_text" format="reference|string" />
     <attr name="between_minsize_maxsize_text" format="reference|string" />
     <attr name="unsupported_image_type_text" format="reference|string" />
+    <attr name="preview_background_color" format="reference|color" />
+    <attr name="preview_bar_background_color" format="reference|color" />
+    <attr name="preview_text_color" format="reference|color" />
 </resources>

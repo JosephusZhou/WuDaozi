@@ -32,13 +32,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="@dimen/wudaozi_toolbar_sure_text_margin_end"
+            android:layout_marginEnd="@dimen/wudaozi_text_horizontal_margin"
             android:ellipsize="end"
             android:enabled="false"
             android:maxLines="1"
-            android:text="@string/wudaozi_sure_text"
+            android:text="@string/wudaozi_sure"
             android:textColor="?toolbar_sure_text_color"
-            android:textSize="@dimen/wudaozi_toolbar_sure_text_size" />
+            android:textSize="@dimen/wudaozi_text_size" />
 
     </androidx.appcompat.widget.Toolbar>
 

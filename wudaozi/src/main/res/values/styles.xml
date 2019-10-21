@@ -13,9 +13,9 @@
         <!-- toolbar sure text color -->
         <item name="toolbar_sure_text_color">@color/wudaozi_sure_text_color</item>
         <!-- spinner album title color -->
-        <item name="spinner_album_title_text_color">@color/wudaozi_album_title_text_color</item>
+        <item name="spinner_album_title_text_color">@color/wudaozi_spinner_album_title_text_color</item>
         <!-- spinner album photo count color -->
-        <item name="spinner_album_count_text_color">@color/wudaozi_album_count_text_color</item>
+        <item name="spinner_album_count_text_color">@color/wudaozi_spinner_album_count_text_color</item>
         <!-- Photo thumbnail placeholder for image select activity -->
         <item name="thumbnail_placeholder">@color/wudaozi_thumbnail_placeholder_color</item>
         <!-- Photo thumbnail mask color for image select activity -->
@@ -34,6 +34,12 @@
         <item name="between_minsize_maxsize_text">@string/wudaozi_between_minsize_maxsize</item>
         <!-- Filter Text -->
         <item name="unsupported_image_type_text">@string/wudaozi_unsupported_image_type</item>
+        <!-- preview activity background color -->
+        <item name="preview_background_color">@color/wudaozi_preview_background_color</item>
+        <!-- preview activity bar background color -->
+        <item name="preview_bar_background_color">@color/wudaozi_preview_bar_background_color</item>
+        <!-- preview text color -->
+        <item name="preview_text_color">@color/wudaozi_preview_text_color</item>
     </style>
 
     <style name="WuDaozi.Toolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">

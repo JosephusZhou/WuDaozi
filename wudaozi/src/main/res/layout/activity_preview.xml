@@ -5,8 +5,7 @@
     android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    android:orientation="vertical"
+    android:background="?preview_background_color"
     tools:context=".view.PreviewActivity">
 
     <it.sephiroth.android.library.imagezoom.ImageViewTouch
@@ -24,18 +23,18 @@
 
         <com.josephuszhou.wudaozi.widget.CheckView
             android:id="@+id/check_view"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/wudaozi_preview_checkview_size"
+            android:layout_height="@dimen/wudaozi_preview_checkview_size"
             android:layout_gravity="end|center_vertical"
-            android:padding="12dp" />
+            android:padding="@dimen/wudaozi_preview_checkview_padding" />
 
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#FFFFFF"
+        android:layout_height="@dimen/wudaozi_preview_bar_height"
+        android:background="?preview_bar_background_color"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -43,18 +42,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
-            android:layout_marginStart="@dimen/wudaozi_toolbar_sure_text_margin_end"
-            android:text="back"
-            android:textSize="@dimen/wudaozi_toolbar_sure_text_size" />
+            android:layout_marginStart="@dimen/wudaozi_text_horizontal_margin"
+            android:text="@string/wudaozi_back"
+            android:textColor="?preview_text_color"
+            android:textSize="@dimen/wudaozi_text_size" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_sure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="@dimen/wudaozi_toolbar_sure_text_margin_end"
-            android:text="@string/wudaozi_sure_text"
-            android:textSize="@dimen/wudaozi_toolbar_sure_text_size" />
+            android:layout_marginEnd="@dimen/wudaozi_text_horizontal_margin"
+            android:text="@string/wudaozi_sure"
+            android:textColor="?preview_text_color"
+            android:textSize="@dimen/wudaozi_text_size" />
 
     </FrameLayout>
 

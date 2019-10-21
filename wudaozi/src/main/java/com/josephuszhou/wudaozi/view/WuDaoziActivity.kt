@@ -113,9 +113,9 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         val selectedCount = SelectedData.getInstance().selectedCount()
         tv_sure.isEnabled = selectedCount > 0
         tv_sure.text = if (selectedCount > 0) {
-            getString(R.string.wudaozi_sure_text_with_num, selectedCount)
+            getString(R.string.wudaozi_sure_with_num, selectedCount)
         } else {
-            getString(R.string.wudaozi_sure_text)
+            getString(R.string.wudaozi_sure)
         }
     }
 

@@ -28,7 +28,7 @@ class CheckView: View {
 
     private var mStrokeWidth: Float = context.resources.getDimension(R.dimen.wudaozi_check_stroke_width)
 
-    private var mTextSize: Float = context.resources.getDimension(R.dimen.wudaozi_check_text_size)
+    private var mTextSize: Float = context.resources.getDimension(R.dimen.wudaozi_checkview_text_size)
 
     private var mStrokeColor: Int = AttrUtil.getcolor(context, R.attr.check_stroke_color, R.color.wudaozi_check_stroke_color)
 

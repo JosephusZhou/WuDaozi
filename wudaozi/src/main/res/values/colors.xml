@@ -6,11 +6,15 @@
     <color name="wudaozi_toolbar_background_color">#177CB0</color>
     <color name="wudaozi_sure_text_disable_color">#BBBBBB</color>
     <color name="wudaozi_sure_text_enable_color">#FFFFFF</color>
-    <color name="wudaozi_album_title_text_color">#333333</color>
-    <color name="wudaozi_album_count_text_color">#999999</color>
+    <color name="wudaozi_spinner_album_title_text_color">#333333</color>
+    <color name="wudaozi_spinner_album_count_text_color">#999999</color>
     <color name="wudaozi_thumbnail_placeholder_color">#999999</color>
     <color name="wudaozi_thumbnail_mask_color">#99000000</color>
     <color name="wudaozi_check_stroke_color">#FFFFFF</color>
     <color name="wudaozi_check_fill_color">#177CB0</color>
     <color name="wudaozi_check_text_color">#FFFFFF</color>
+    <color name="wudaozi_preview_background_color">#000000</color>
+    <color name="wudaozi_preview_bar_background_color">#FFFFFF</color>
+    <color name="wudaozi_preview_text_disable_color">#999999</color>
+    <color name="wudaozi_preview_text_enable_color">#177CB0</color>
 </resources>

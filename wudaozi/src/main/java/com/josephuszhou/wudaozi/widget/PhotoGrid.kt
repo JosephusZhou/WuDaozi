@@ -56,8 +56,9 @@ class PhotoGrid : SquareFrameLayout, View.OnClickListener {
         val divSize = context.resources.getDimensionPixelSize(R.dimen.wudaozi_grid_div_size)
         mSize = (SizeUtil.getScreenWidth(context as Activity) - divSize * count) / count
 
-        mCheckView.layoutParams.width = mSize / 4
-        mCheckView.layoutParams.height = mSize / 4
+        val paddingSize = context.resources.getDimensionPixelSize(R.dimen.wudaozi_thumbnial_check_padding)
+        mCheckView.layoutParams.width = mSize / 4 + paddingSize * 2
+        mCheckView.layoutParams.height = mSize / 4 + paddingSize * 2
     }
 
     fun setData(photoEntity: PhotoEntity) {

@@ -24,10 +24,10 @@
 
         <com.josephuszhou.wudaozi.widget.CheckView
             android:id="@+id/check_view"
-            android:layout_width="20dp"
-            android:layout_height="?actionBarSize"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="@dimen/wudaozi_toolbar_sure_text_margin_end" />
+            android:padding="12dp" />
 
     </FrameLayout>
 

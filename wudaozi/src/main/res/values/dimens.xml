@@ -10,7 +10,7 @@
     <dimen name="wudaozi_spinner_width">250dp</dimen>
     <dimen name="wudaozi_grid_div_size">4dp</dimen>
     <dimen name="wudaozi_check_stroke_width">2dp</dimen>
-    <dimen name="wudaozi_check_margin">4dp</dimen>
+    <dimen name="wudaozi_thumbnial_check_padding">4dp</dimen>
 
     <!-- text size -->
     <dimen name="wudaozi_toolbar_sure_text_size">16sp</dimen>

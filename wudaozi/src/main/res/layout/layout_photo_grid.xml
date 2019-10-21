@@ -17,8 +17,7 @@
         android:id="@+id/check_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/wudaozi_check_margin"
-        android:layout_marginEnd="@dimen/wudaozi_check_margin"
+        android:padding="@dimen/wudaozi_thumbnial_check_padding"
         android:layout_gravity="end|top"/>
 
 </merge>

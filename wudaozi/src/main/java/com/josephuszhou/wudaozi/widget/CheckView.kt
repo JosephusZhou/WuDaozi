@@ -76,12 +76,14 @@ class CheckView: View {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
+        val drawWidth = width - paddingStart - paddingEnd
+
         if (mCheckedNum == UNCHECKED_NUM || mCheckedNum <= 0) {
             // draw normal status
-            canvas?.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), (width / 2).toFloat() - mStrokeWidth, mStrokePaint)
+            canvas?.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), (drawWidth / 2).toFloat() - mStrokeWidth, mStrokePaint)
         } else {
             // draw selected status
-            canvas?.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), (width / 2).toFloat(), mBackgroundPaint)
+            canvas?.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), (drawWidth / 2).toFloat(), mBackgroundPaint)
 
             // draw text
             val text = mCheckedNum.toString()

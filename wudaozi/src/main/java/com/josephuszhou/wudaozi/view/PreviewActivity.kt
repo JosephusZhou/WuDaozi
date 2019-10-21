@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.data.SelectedData
@@ -35,6 +35,8 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mSelectedData = SelectedData.getInstance()
 
+    private var mBarViewHided = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(Config.getInstance().mThemeId)
 
@@ -50,7 +52,7 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener {
 
         iv_touch.displayType = ImageViewTouchBase.DisplayType.FIT_TO_SCREEN
         iv_touch.setSingleTapListener {
-            Toast.makeText(this, "tap", Toast.LENGTH_SHORT).show()
+            updateBarView()
         }
 
         Config.getInstance().mImageLoader.loadImage(
@@ -109,5 +111,44 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+        setSureTextStatus()
     }
+
+    private fun setSureTextStatus() {
+        val selectedCount = mSelectedData.selectedCount()
+        tv_sure.isEnabled = selectedCount > 0
+        tv_sure.text = if (selectedCount > 0) {
+            getString(R.string.wudaozi_sure_text_with_num, selectedCount)
+        } else {
+            getString(R.string.wudaozi_sure_text)
+        }
+    }
+
+    private fun updateBarView() {
+        if (mBarViewHided) {
+            layout_top.animate().apply {
+                interpolator = FastOutSlowInInterpolator()
+                translationYBy(layout_top.measuredHeight.toFloat())
+                start()
+            }
+            layout_bottom.animate().apply {
+                interpolator = FastOutSlowInInterpolator()
+                translationYBy(-layout_bottom.measuredHeight.toFloat())
+                start()
+            }
+        } else {
+            layout_top.animate().apply {
+                interpolator = FastOutSlowInInterpolator()
+                translationYBy(-layout_top.measuredHeight.toFloat())
+                start()
+            }
+            layout_bottom.animate().apply {
+                interpolator = FastOutSlowInInterpolator()
+                translationYBy(layout_bottom.measuredHeight.toFloat())
+                start()
+            }
+        }
+        mBarViewHided = !mBarViewHided
+    }
+
 }

@@ -76,15 +76,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     override fun onClick(v: View?) {
         when(v) {
             tv_sure -> {
-                val uriList = SelectedData.getInstance().getUriList()
-                val bundle = Bundle().apply {
-                    putParcelableArrayList(WuDaozi.BUNDLE_KEY, uriList)
-                }
-                val intent = Intent().apply {
-                    putExtras(bundle)
-                }
-                setResult(Activity.RESULT_OK, intent)
-                finish()
+                setResult()
             }
         }
     }
@@ -125,5 +117,24 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         } else {
             getString(R.string.wudaozi_sure_text)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == PreviewActivity.REQUEST_CODE_PREVIEW && resultCode == Activity.RESULT_OK) {
+            setResult()
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun setResult() {
+        val uriList = SelectedData.getInstance().getUriList()
+        val bundle = Bundle().apply {
+            putParcelableArrayList(WuDaozi.BUNDLE_KEY, uriList)
+        }
+        val intent = Intent().apply {
+            putExtras(bundle)
+        }
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

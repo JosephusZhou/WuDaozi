@@ -12,7 +12,7 @@ It may takes a long time, but doesn't matter, Rome wasn't built in a day.
 * Select multiple images in sequence ✔
 * Filter image size ✔
 * Filter image type ✔
-* Preview image
+* Preview images ✔
 * Uniform resource definition, open resource attributes ✔
 * Decouple code
 * Performance optimization

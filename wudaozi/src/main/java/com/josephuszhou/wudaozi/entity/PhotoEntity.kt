@@ -8,24 +8,28 @@ class PhotoEntity() : Parcelable {
 
     var id: Long = -1
     lateinit var uri: Uri
-    lateinit var albumName: String
     var size: Int = -1
     lateinit var mimeType: String
 
+    var albumId = -1
+    lateinit var albumName: String
+
     constructor(parcel: Parcel) : this() {
         id = parcel.readLong()
-        uri = parcel.readParcelable<Uri>(Uri::class.java.classLoader) as Uri
-        albumName = parcel.readString() as String
+        uri = parcel.readParcelable(Uri::class.java.classLoader) ?: Uri.EMPTY
         size = parcel.readInt()
-        mimeType = parcel.readString() as String
+        mimeType = parcel.readString() ?: ""
+        albumId = parcel.readInt()
+        albumName = parcel.readString() ?: ""
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
         parcel.writeParcelable(uri, flags)
-        parcel.writeString(albumName)
         parcel.writeInt(size)
         parcel.writeString(mimeType)
+        parcel.writeInt(albumId)
+        parcel.writeString(albumName)
     }
 
     override fun describeContents(): Int {

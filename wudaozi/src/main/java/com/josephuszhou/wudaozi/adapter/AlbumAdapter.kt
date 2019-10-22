@@ -77,7 +77,7 @@ class AlbumAdapter(private var mContext: Context, private var mList: ArrayList<A
                         ivAlbumThumbnail,
                         it.thumbnail.uri
                     )
-                    tvAlbumName.text = it.bucketName
+                    tvAlbumName.text = it.albumName
                     tvAlbumPhotoCount.text = it.photoCount.toString()
                 }
             }

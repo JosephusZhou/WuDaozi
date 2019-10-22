@@ -38,6 +38,8 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
 
     private lateinit var mPhotoList: ArrayList<PhotoEntity>
 
+    private var mCurrentAlbumEntity: AlbumEntity? = null
+
     private var mOnLoadListener: OnLoadListener? = null
 
     fun load() {
@@ -62,17 +64,20 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
             mPhotoList = ArrayList()
 
             var allAlbumEntity = AlbumEntity()
-            allAlbumEntity.bucketName = getContext().getString(R.string.wudaozi_all)
+            allAlbumEntity.allPhoto = true
+            allAlbumEntity.albumName = getContext().getString(R.string.wudaozi_all)
             allAlbumEntity.photoCount = 0
             mAlbumList.add(allAlbumEntity)
 
             it.moveToFirst()
             do {
+                val bucketIdIndex = it.getColumnIndex("bucket_id")
                 val bucketNameIndex = it.getColumnIndex("bucket_display_name")
                 val idIndex = it.getColumnIndex(MediaStore.Images.Media._ID)
                 val sizeIndex = it.getColumnIndex(MediaStore.Images.Media.SIZE)
                 val mimeTypeIndex = it.getColumnIndex(MediaStore.Images.Media.MIME_TYPE)
 
+                val bucketId = it.getInt(bucketIdIndex)
                 val bucketName = it.getString(bucketNameIndex)
                 val id = it.getLong(idIndex)
                 val size = it.getInt(sizeIndex)
@@ -81,9 +86,10 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
                 val photoEntity = PhotoEntity()
                 photoEntity.id = id
                 photoEntity.uri = ContentUris.withAppendedId(IMAGE_URI, id)
-                photoEntity.albumName = bucketName
                 photoEntity.size = size
                 photoEntity.mimeType = mimeType
+                photoEntity.albumId = bucketId
+                photoEntity.albumName = bucketName
                 mPhotoList.add(photoEntity)
 
                 allAlbumEntity = mAlbumList[0]
@@ -94,7 +100,7 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
 
                 var exist = false
                 for (albumEntity in mAlbumList) {
-                    if (TextUtils.equals(albumEntity.bucketName, bucketName)) {
+                    if (TextUtils.equals(albumEntity.albumName, bucketName)) {
                         exist = true
                         albumEntity.photoCount++
                         break
@@ -102,7 +108,8 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
                 }
                 if (!exist) {
                     val albumEntity = AlbumEntity()
-                    albumEntity.bucketName = bucketName
+                    albumEntity.albumId = bucketId
+                    albumEntity.albumName = bucketName
                     albumEntity.photoCount = 1
                     albumEntity.thumbnail = photoEntity
                     mAlbumList.add(albumEntity)
@@ -122,7 +129,40 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
 
     fun getAlbumList() = mAlbumList
 
-    fun getPhotoList() = mPhotoList
+    fun getPhotoList(albumEntity: AlbumEntity): ArrayList<PhotoEntity> {
+        if (albumEntity.allPhoto) {
+            return mPhotoList
+        }
+        val list = ArrayList<PhotoEntity>()
+        for (entity in mPhotoList) {
+            if (entity.albumId == albumEntity.albumId) {
+                list.add(entity)
+            }
+        }
+        return list
+    }
+
+    fun setCurrentAlbum(position: Int) {
+        mCurrentAlbumEntity = mAlbumList[position]
+    }
+
+    fun getCurrentAlbum(): AlbumEntity {
+        return mCurrentAlbumEntity?.let {
+            it
+        } ?: AlbumEntity().apply {
+            this.allPhoto = true
+        }
+    }
+
+    fun getCurrentAlbumIndex(): Int {
+        return mCurrentAlbumEntity?.let {
+            for(i in mAlbumList.indices) {
+                if (mAlbumList[i].albumId == it.albumId)
+                    return i
+            }
+            0
+        } ?: 0
+    }
 
     interface OnLoadListener {
         fun onLoaded()

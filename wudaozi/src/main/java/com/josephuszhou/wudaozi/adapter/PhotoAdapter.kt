@@ -1,6 +1,5 @@
 package com.josephuszhou.wudaozi.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.entity.PhotoEntity
-import com.josephuszhou.wudaozi.view.PreviewActivity
 import com.josephuszhou.wudaozi.widget.CheckView
 import com.josephuszhou.wudaozi.widget.PhotoGrid
 
@@ -26,8 +24,14 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
 
     private var mOnCheckStateListener: OnCheckStateListener? = null
 
+    private var mOnThumbnailClickListener: OnThumbnailClickListener? = null
+
     fun setOnCheckStateListener(onCheckStateListener: OnCheckStateListener) {
         mOnCheckStateListener = onCheckStateListener
+    }
+
+    fun setOnThumbnailClickListener(onThumbnailClickListener: OnThumbnailClickListener) {
+        mOnThumbnailClickListener = onThumbnailClickListener
     }
 
     fun setData(list: ArrayList<PhotoEntity>) {
@@ -66,7 +70,7 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
     }
 
     override fun onThumbnailClick(thumbnail: AppCompatImageView, photoEntity: PhotoEntity) {
-        PreviewActivity.start(thumbnail.context as Activity, PreviewActivity.REQUEST_CODE_PREVIEW, photoEntity)
+        mOnThumbnailClickListener?.onThumbnailClick(photoEntity)
     }
 
     override fun onCheckViewClick(checkView: CheckView, photoEntity: PhotoEntity) {
@@ -89,6 +93,10 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
 
     interface OnCheckStateListener {
         fun onCheckStateChanged()
+    }
+
+    interface OnThumbnailClickListener {
+        fun onThumbnailClick(photoEntity: PhotoEntity)
     }
 
 }

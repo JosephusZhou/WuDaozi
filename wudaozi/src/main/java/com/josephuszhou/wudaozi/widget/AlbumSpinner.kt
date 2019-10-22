@@ -38,7 +38,7 @@ class AlbumSpinner(context: Context) {
     private fun onselected(position: Int) {
         mListPopupWindow.dismiss()
         val albumEntity = mAlbumAdapter.getItem(position) as AlbumEntity
-        mSelectedTextView?.text = albumEntity.bucketName
+        mSelectedTextView?.text = albumEntity.albumName
     }
 
     fun setSelected(position: Int) {

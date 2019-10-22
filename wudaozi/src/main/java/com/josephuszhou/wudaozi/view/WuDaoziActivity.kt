@@ -3,7 +3,6 @@ package com.josephuszhou.wudaozi.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_wu_daozi.*
 
 class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     AlbumSpinner.OnItemSelectedListener, PhotoAdapter.OnCheckStateListener,
-    PhotoData.OnLoadListener {
+    PhotoAdapter.OnThumbnailClickListener, PhotoData.OnLoadListener {
 
     private lateinit var mAlbumSpinner: AlbumSpinner
 
@@ -60,6 +59,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         // init mPhotoGridView
         mPhotoGridView = PhotoGridView(this, recyclerview).apply {
             setOnCheckStateListener(this@WuDaoziActivity)
+            setOnThumbnailClickListener(this@WuDaoziActivity)
         }
 
         mPhotoData = PhotoData(this).apply {
@@ -68,13 +68,18 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        onCheckStateChanged()
+    }
+
     override fun onDestroy() {
         mPhotoData.destory()
         super.onDestroy()
     }
 
     override fun onClick(v: View?) {
-        when(v) {
+        when (v) {
             tv_sure -> {
                 setResult()
             }
@@ -90,23 +95,14 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onLoaded() {
         mAlbumSpinner.setData(mPhotoData.getAlbumList())
-        mAlbumSpinner.setSelected(0)
-        onItemSelected(0)
+        val albumIndex = mPhotoData.getCurrentAlbumIndex()
+        mAlbumSpinner.setSelected(albumIndex)
+        onItemSelected(albumIndex)
     }
 
     override fun onItemSelected(position: Int) {
-        if (position == 0) {
-            mPhotoGridView.setData(mPhotoData.getPhotoList())
-            return
-        }
-        val albumEntity = mPhotoData.getAlbumList()[position]
-        val list = ArrayList<PhotoEntity>()
-        for (entity in mPhotoData.getPhotoList()) {
-            if (TextUtils.equals(entity.albumName, albumEntity.bucketName)) {
-                list.add(entity)
-            }
-        }
-        mPhotoGridView.setData(list)
+        mPhotoData.setCurrentAlbum(position)
+        mPhotoGridView.setData(mPhotoData.getPhotoList(mPhotoData.getCurrentAlbum()))
     }
 
     override fun onCheckStateChanged() {
@@ -117,6 +113,15 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         } else {
             getString(R.string.wudaozi_sure)
         }
+    }
+
+    override fun onThumbnailClick(photoEntity: PhotoEntity) {
+        PreviewActivity.start(
+            this,
+            PreviewActivity.REQUEST_CODE_PREVIEW,
+            mPhotoData.getCurrentAlbum(),
+            photoEntity
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

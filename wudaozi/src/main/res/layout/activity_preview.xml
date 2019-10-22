@@ -8,8 +8,8 @@
     android:background="?preview_background_color"
     tools:context=".view.PreviewActivity">
 
-    <it.sephiroth.android.library.imagezoom.ImageViewTouch
-        android:id="@+id/iv_touch"
+    <com.josephuszhou.wudaozi.widget.PreviewViewPager
+        android:id="@+id/preview_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

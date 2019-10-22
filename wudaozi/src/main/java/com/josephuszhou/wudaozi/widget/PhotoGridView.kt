@@ -43,4 +43,8 @@ class PhotoGridView(context: Context, mRecyclerView: RecyclerView) {
         mPhotoAdapter.setOnCheckStateListener(onCheckStateListener)
     }
 
+    fun setOnThumbnailClickListener(onThumbnailClickListener: PhotoAdapter.OnThumbnailClickListener) {
+        mPhotoAdapter.setOnThumbnailClickListener(onThumbnailClickListener)
+    }
+
 }

@@ -19,7 +19,8 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+//        If you want to try the remote aar module, add this repository address
+//        maven { url 'https://jitpack.io' }
     }
 }
 

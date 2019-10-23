@@ -1,7 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+// JitPack Maven
+apply plugin: 'com.github.dcendents.android-maven'
+// Your Group
+group='com.github.JosephusZhou'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -11,7 +15,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -40,10 +44,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    kapt 'com.github.bumptech.glide:compiler:4.10.0'
-
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    compileOnly 'com.github.bumptech.glide:glide:4.10.0'
+    compileOnly 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'it.sephiroth.android.library.imagezoom:imagezoom:2.3.0'
 }

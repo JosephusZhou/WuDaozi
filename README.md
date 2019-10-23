@@ -19,6 +19,8 @@ It may takes a long time, but doesn't matter, Rome wasn't built in a day.
 
 ### Exist Bugs
 
+* When click a selected image into PreviewActivity, the CheckView status is wrong
+
 ### Features that may be added
 
 * Video selection

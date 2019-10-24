@@ -167,16 +167,17 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onPageSelected(position: Int) {
-        if (mPrePosition != -1 && mPrePosition != position) {
-            (mPreviewPagerAdapter.instantiateItem(
-                preview_view_pager,
-                mPrePosition
-            ) as PreviewFragment).resetView()
-
+        if (mPrePosition != position) {
+            if (mPrePosition != -1) {
+                (mPreviewPagerAdapter.instantiateItem(
+                    preview_view_pager,
+                    mPrePosition
+                ) as PreviewFragment).resetView()
+            }
             val currentPhotoEntity = mPreviewPagerAdapter.getAdapterItem(position)
             setCheckStatus(currentPhotoEntity)
+            mPrePosition = position
         }
-        mPrePosition = position
     }
 
     override fun onSingleTapConfirmed() {

@@ -1,4 +1,4 @@
-package com.josephuszhou.wudaozi
+package com.josephuszhou.wudaozi.demo
 
 import org.junit.Test
 

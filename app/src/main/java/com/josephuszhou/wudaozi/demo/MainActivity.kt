@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.WuDaozi
 import com.josephuszhou.wudaozi.filter.Filter
 import kotlinx.android.synthetic.main.activity_main.*

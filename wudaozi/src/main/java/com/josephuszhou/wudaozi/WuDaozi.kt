@@ -21,10 +21,10 @@ class WuDaozi private constructor(activity: Activity) {
 
         fun with(activity: Activity) = WuDaozi(activity)
 
-        fun with(fragment: Fragment) {
+        fun with(fragment: Fragment): WuDaozi {
             fragment.activity?.let {
-                with(it)
-            }
+                return with(it)
+            } ?: throw IllegalStateException("No Activity attached")
         }
 
     }

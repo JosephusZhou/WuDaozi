@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?spinner_album_bg_color"
     android:padding="@dimen/wudaozi_spinner_Item_padding">
 
     <androidx.appcompat.widget.AppCompatImageView

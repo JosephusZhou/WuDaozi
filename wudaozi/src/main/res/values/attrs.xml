@@ -2,8 +2,10 @@
 <resources>
     <attr name="image_select_background_color" format="reference|color" />
     <attr name="toolbar_theme" format="reference" />
+    <attr name="toolbar_back_icon" format="reference" />
     <attr name="toolbar_album_text_color" format="reference|color" />
     <attr name="toolbar_sure_text_color" format="reference|color" />
+    <attr name="spinner_album_bg_color" format="reference|color" />
     <attr name="spinner_album_title_text_color" format="reference|color" />
     <attr name="spinner_album_count_text_color" format="reference|color" />
     <attr name="thumbnail_placeholder" format="reference|color" />

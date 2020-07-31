@@ -8,10 +8,14 @@
         <item name="image_select_background_color">@color/wudaozi_image_select_background_color</item>
         <!-- toolbar theme -->
         <item name="toolbar_theme">@style/WuDaozi.Toolbar</item>
+        <!-- toolbar back icon -->
+        <item name="toolbar_back_icon">@null</item>
         <!-- toolbar selected album title color -->
         <item name="toolbar_album_text_color">@color/wudaozi_toolbar_control_normal_color</item>
         <!-- toolbar sure text color -->
         <item name="toolbar_sure_text_color">@color/wudaozi_sure_text_color</item>
+        <!-- spinner album bg color -->
+        <item name="spinner_album_bg_color">@color/wudaozi_image_select_background_color</item>
         <!-- spinner album title color -->
         <item name="spinner_album_title_text_color">@color/wudaozi_spinner_album_title_text_color</item>
         <!-- spinner album photo count color -->

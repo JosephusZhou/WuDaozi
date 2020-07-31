@@ -3,6 +3,7 @@ package com.josephuszhou.wudaozi.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -46,6 +47,12 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val typedValue = TypedValue()
+        theme.resolveAttribute(R.attr.toolbar_back_icon, typedValue, true)
+        if (typedValue.resourceId > 0) {
+            toolbar.setNavigationIcon(typedValue.resourceId)
+        }
 
         tv_sure.setOnClickListener(this)
 

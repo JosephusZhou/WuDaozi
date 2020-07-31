@@ -1,10 +1,10 @@
 <resources>
-    <string name="wudaozi_sure">Sure</string>
-    <string name="wudaozi_sure_with_num">Sure(%d)</string>
-    <string name="wudaozi_all">All</string>
-    <string name="wudaozi_smaller_than_minsize">The selected image cannot be smaller than %s</string>
-    <string name="wudaozi_larger_than_maxsize">The selected image cannot be larger than %s</string>
-    <string name="wudaozi_between_minsize_maxsize">The selected image can only be between %s and %s</string>
-    <string name="wudaozi_unsupported_image_type">Unsupported image type</string>
-    <string name="wudaozi_back">Back</string>
+    <string name="wudaozi_sure">确定</string>
+    <string name="wudaozi_sure_with_num">确定(%d)</string>
+    <string name="wudaozi_all">全部</string>
+    <string name="wudaozi_smaller_than_minsize">所选图片的尺寸不能小于 %s</string>
+    <string name="wudaozi_larger_than_maxsize">所选图片的尺寸不能大于 %s</string>
+    <string name="wudaozi_between_minsize_maxsize">所选图片的尺寸只能在 %s 和 %s 之间</string>
+    <string name="wudaozi_unsupported_image_type">不支持的图片类型</string>
+    <string name="wudaozi_back">返回</string>
 </resources>

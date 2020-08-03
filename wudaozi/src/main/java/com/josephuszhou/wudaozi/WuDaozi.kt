@@ -19,8 +19,10 @@ class WuDaozi private constructor(activity: Activity) {
 
         const val BUNDLE_KEY: String = "wudaozi_uri_list"
 
+        @JvmStatic
         fun with(activity: Activity) = WuDaozi(activity)
 
+        @JvmStatic
         fun with(fragment: Fragment): WuDaozi {
             fragment.activity?.let {
                 return with(it)

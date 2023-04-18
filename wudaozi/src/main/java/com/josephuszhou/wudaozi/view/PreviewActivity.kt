@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -26,15 +27,13 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
     PhotoData.OnLoadListener {
 
     companion object {
-        const val REQUEST_CODE_PREVIEW: Int = 8888
-
         private const val ARGS_ALBUM_ENTITY = "argsAlbumEntity"
 
         private const val ARGS_PHOTO_ENTITY = "argsPhotoEntity"
 
         fun start(
             activity: Activity,
-            requestCode: Int,
+            launcher: ActivityResultLauncher<Intent>,
             albumEntity: AlbumEntity,
             photoEntity: PhotoEntity
         ) {
@@ -44,7 +43,7 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
                     putParcelable(ARGS_PHOTO_ENTITY, photoEntity)
                 })
             }
-            activity.startActivityForResult(intent, requestCode)
+            launcher.launch(intent)
         }
     }
 

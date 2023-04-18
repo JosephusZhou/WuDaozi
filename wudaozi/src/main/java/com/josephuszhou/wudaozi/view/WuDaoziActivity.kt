@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.Toolbar
@@ -35,10 +37,18 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     private lateinit var tvAlbum: AppCompatTextView
     private lateinit var recyclerview: RecyclerView
 
+    private lateinit var previewLauncher: ActivityResultLauncher<Intent>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(Config.getInstance().mThemeId)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wu_daozi)
+
+        previewLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                setResult()
+            }
+        }
 
         toolbar = findViewById(R.id.toolbar)
         tvSure = findViewById(R.id.tv_sure)
@@ -128,17 +138,10 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     override fun onThumbnailClick(photoEntity: PhotoEntity) {
         PreviewActivity.start(
             this,
-            PreviewActivity.REQUEST_CODE_PREVIEW,
+            previewLauncher,
             mPhotoData.getCurrentAlbum(),
             photoEntity
         )
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == PreviewActivity.REQUEST_CODE_PREVIEW && resultCode == Activity.RESULT_OK) {
-            setResult()
-        }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun setResult() {

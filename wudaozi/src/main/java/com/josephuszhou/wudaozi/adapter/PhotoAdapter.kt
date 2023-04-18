@@ -1,5 +1,6 @@
 package com.josephuszhou.wudaozi.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,7 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
         mOnThumbnailClickListener = onThumbnailClickListener
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(list: ArrayList<PhotoEntity>) {
         mList = list
         notifyDataSetChanged()
@@ -86,6 +88,7 @@ class PhotoAdapter(private var mList: ArrayList<PhotoEntity>) :
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun notifyChanged() {
         notifyDataSetChanged()
         mOnCheckStateListener?.onCheckStateChanged()

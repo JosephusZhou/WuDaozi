@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.viewpager.widget.ViewPager
 import com.josephuszhou.wudaozi.R
@@ -16,8 +18,8 @@ import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.entity.AlbumEntity
 import com.josephuszhou.wudaozi.entity.PhotoEntity
 import com.josephuszhou.wudaozi.widget.CheckView
+import com.josephuszhou.wudaozi.widget.PreviewViewPager
 import it.sephiroth.android.library.imagezoom.ImageViewTouch
-import kotlinx.android.synthetic.main.activity_preview.*
 
 class PreviewActivity : AppCompatActivity(), View.OnClickListener,
     ImageViewTouch.OnImageViewTouchSingleTapListener, ViewPager.OnPageChangeListener,
@@ -45,6 +47,13 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
             activity.startActivityForResult(intent, requestCode)
         }
     }
+
+    private lateinit var previewViewPager: PreviewViewPager
+    private lateinit var checkView: CheckView
+    private lateinit var tvBack: AppCompatTextView
+    private lateinit var tvSure: AppCompatTextView
+    private lateinit var layoutTop: FrameLayout
+    private lateinit var layoutBottom: FrameLayout
 
     private var mSlectedAlbumEntity: AlbumEntity? = null
 
@@ -74,13 +83,20 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
             throw Exception("Can you just pass a entity to me?")
         }
 
-        preview_view_pager.addOnPageChangeListener(this)
-        mPreviewPagerAdapter = PreviewPagerAdapter(supportFragmentManager)
-        preview_view_pager.adapter = mPreviewPagerAdapter
+        previewViewPager = findViewById(R.id.preview_view_pager)
+        checkView = findViewById(R.id.check_view)
+        tvBack = findViewById(R.id.tv_back)
+        tvSure = findViewById(R.id.tv_sure)
+        layoutTop = findViewById(R.id.layout_top)
+        layoutBottom = findViewById(R.id.layout_bottom)
 
-        check_view.setOnClickListener(this)
-        tv_back.setOnClickListener(this)
-        tv_sure.setOnClickListener(this)
+        previewViewPager.addOnPageChangeListener(this)
+        mPreviewPagerAdapter = PreviewPagerAdapter(supportFragmentManager)
+        previewViewPager.adapter = mPreviewPagerAdapter
+
+        checkView.setOnClickListener(this)
+        tvBack.setOnClickListener(this)
+        tvSure.setOnClickListener(this)
 
         setSureTextStatus()
 
@@ -100,15 +116,15 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
                 entryIndex = i
             }
         }
-        preview_view_pager.setCurrentItem(entryIndex, false)
+        previewViewPager.setCurrentItem(entryIndex, false)
         mPrePosition = entryIndex
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            check_view -> {
+            checkView -> {
                 val photoEntity =
-                mPreviewPagerAdapter.getAdapterItem(preview_view_pager.currentItem)
+                mPreviewPagerAdapter.getAdapterItem(previewViewPager.currentItem)
                 val checkNum = mSelectedData.checkSelectedItem(photoEntity)
                 if (checkNum > 0) {
                     mSelectedData.removeSelectedItem(photoEntity)
@@ -122,10 +138,10 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
                 setCheckStatus(photoEntity)
                 setSureTextStatus()
             }
-            tv_back -> {
+            tvBack -> {
                 onBackPressed()
             }
-            tv_sure -> {
+            tvSure -> {
                 setResult(Activity.RESULT_OK)
                 finish()
             }
@@ -135,23 +151,23 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
     private fun setCheckStatus(entity: PhotoEntity) {
         val checkNum = mSelectedData.checkSelectedItem(entity)
         if (checkNum > 0) {
-            check_view.isEnabled = true
-            check_view.setCheckedNum(checkNum)
+            checkView.isEnabled = true
+            checkView.setCheckedNum(checkNum)
         } else {
             if (mSelectedData.maxSelected()) {
-                check_view.isEnabled = false
-                check_view.setCheckedNum(CheckView.UNCHECKED_NUM)
+                checkView.isEnabled = false
+                checkView.setCheckedNum(CheckView.UNCHECKED_NUM)
             } else {
-                check_view.isEnabled = true
-                check_view.setCheckedNum(CheckView.UNCHECKED_NUM)
+                checkView.isEnabled = true
+                checkView.setCheckedNum(CheckView.UNCHECKED_NUM)
             }
         }
     }
 
     private fun setSureTextStatus() {
         val selectedCount = mSelectedData.selectedCount()
-        tv_sure.isEnabled = selectedCount > 0
-        tv_sure.text = if (selectedCount > 0) {
+        tvSure.isEnabled = selectedCount > 0
+        tvSure.text = if (selectedCount > 0) {
             getString(R.string.wudaozi_sure_with_num, selectedCount)
         } else {
             getString(R.string.wudaozi_sure)
@@ -170,7 +186,7 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
         if (mPrePosition != position) {
             if (mPrePosition != -1) {
                 (mPreviewPagerAdapter.instantiateItem(
-                    preview_view_pager,
+                    previewViewPager,
                     mPrePosition
                 ) as PreviewFragment).resetView()
             }
@@ -186,25 +202,25 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
 
     private fun updateBarView() {
         if (mBarViewHided) {
-            layout_top.animate().apply {
+            layoutTop.animate().apply {
                 interpolator = FastOutSlowInInterpolator()
-                translationYBy(layout_top.measuredHeight.toFloat())
+                translationYBy(layoutTop.measuredHeight.toFloat())
                 start()
             }
-            layout_bottom.animate().apply {
+            layoutBottom.animate().apply {
                 interpolator = FastOutSlowInInterpolator()
-                translationYBy(-layout_bottom.measuredHeight.toFloat())
+                translationYBy(-layoutBottom.measuredHeight.toFloat())
                 start()
             }
         } else {
-            layout_top.animate().apply {
+            layoutTop.animate().apply {
                 interpolator = FastOutSlowInInterpolator()
-                translationYBy(-layout_top.measuredHeight.toFloat())
+                translationYBy(-layoutTop.measuredHeight.toFloat())
                 start()
             }
-            layout_bottom.animate().apply {
+            layoutBottom.animate().apply {
                 interpolator = FastOutSlowInInterpolator()
-                translationYBy(layout_bottom.measuredHeight.toFloat())
+                translationYBy(layoutBottom.measuredHeight.toFloat())
                 start()
             }
         }

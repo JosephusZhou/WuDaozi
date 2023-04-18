@@ -55,8 +55,8 @@ class PreviewFragment: Fragment() {
 
             Config.getInstance().mImageLoader.loadImage(
                 context,
-                SizeUtil.getScreenWidth(activity!!),
-                SizeUtil.getScreenHeight(activity!!),
+                SizeUtil.getScreenWidth(requireActivity()),
+                SizeUtil.getScreenHeight(requireActivity()),
                 it,
                 photoEntity.uri)
         }

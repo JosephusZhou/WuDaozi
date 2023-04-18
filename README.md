@@ -21,7 +21,7 @@ Or use Gradle.
 ```groovy
 allprojects {
     repositories {
-        ...
+        //... others 
         maven { url 'https://jitpack.io' }
     }
 }

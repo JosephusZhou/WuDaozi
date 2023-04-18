@@ -3,7 +3,7 @@
     package="com.josephuszhou.wudaozi">
 
     <application>
-        <activity android:name=".view.PreviewActivity"></activity>
+        <activity android:name=".view.PreviewActivity" />
         <activity android:name=".view.WuDaoziActivity" />
     </application>
 

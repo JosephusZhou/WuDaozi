@@ -1,6 +1,13 @@
 package com.josephuszhou.wudaozi
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.activity.ComponentActivity
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.annotation.IntRange
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
@@ -9,35 +16,36 @@ import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.filter.Filter
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.view.WuDaoziActivity
-import java.lang.ref.WeakReference
 
-class WuDaozi private constructor(activity: Activity) {
+class WuDaozi private constructor(private val context: Context) {
 
     companion object {
-
-        const val REQUEST_CODE: Int = 9999
 
         const val BUNDLE_KEY: String = "wudaozi_uri_list"
 
         @JvmStatic
-        fun with(activity: Activity) = WuDaozi(activity)
+        fun with(context: Context) = WuDaozi(context)
 
-        @JvmStatic
-        fun with(fragment: Fragment): WuDaozi {
-            fragment.activity?.let {
-                return with(it)
-            } ?: throw IllegalStateException("No Activity attached")
+        fun getLauncher(
+            activity: ComponentActivity,
+            callback: ActivityResultCallback<ArrayList<Uri>?>
+        ): ActivityResultLauncher<Intent> {
+            return activity.registerForActivityResult(SelectResult(), callback)
         }
 
+        fun getLauncher(
+            fragment: Fragment,
+            callback: ActivityResultCallback<ArrayList<Uri>?>
+        ): ActivityResultLauncher<Intent> {
+            return fragment.registerForActivityResult(SelectResult(), callback)
+        }
     }
-
-    private val mActivityReference = WeakReference<Activity>(activity)
 
     private val mConfig = Config.getInitialInstance()
 
     private val mSelectedData = SelectedData.getInitialInstance()
 
-    fun theme(@StyleRes themeId: Int):WuDaozi {
+    fun theme(@StyleRes themeId: Int): WuDaozi {
         mConfig.mThemeId = themeId
         return this
     }
@@ -57,9 +65,11 @@ class WuDaozi private constructor(activity: Activity) {
         return this
     }
 
-    fun filter(@IntRange(from = 0) minByteSize: Int = Filter.Size.NO_FILTER_SIZE,
-               @IntRange(from = 0) maxByteSize: Int = Filter.Size.NO_FILTER_SIZE,
-               selectedTypes: Array<String> = arrayOf(Filter.Type.ALL)): WuDaozi {
+    fun filter(
+        @IntRange(from = 0) minByteSize: Int = Filter.Size.NO_FILTER_SIZE,
+        @IntRange(from = 0) maxByteSize: Int = Filter.Size.NO_FILTER_SIZE,
+        selectedTypes: Array<String> = arrayOf(Filter.Type.ALL)
+    ): WuDaozi {
         var size: Filter.Size? = null
         var type: Filter.Type? = null
         if (minByteSize != Filter.Size.NO_FILTER_SIZE || maxByteSize != Filter.Size.NO_FILTER_SIZE) {
@@ -72,9 +82,20 @@ class WuDaozi private constructor(activity: Activity) {
         return this
     }
 
-    fun start() {
-        mActivityReference.get()?.let {
-            WuDaoziActivity.start(it, REQUEST_CODE)
+    fun start(launcher: ActivityResultLauncher<Intent>) {
+        launcher.launch(Intent(context, WuDaoziActivity::class.java))
+    }
+
+    class SelectResult : ActivityResultContract<Intent, ArrayList<Uri>?>() {
+
+        override fun createIntent(context: Context, input: Intent): Intent = input
+
+        override fun parseResult(resultCode: Int, intent: Intent?): ArrayList<Uri>? {
+            return if (resultCode == Activity.RESULT_OK) {
+                intent?.extras?.getParcelableArrayList<Uri>(BUNDLE_KEY) as ArrayList<Uri>
+            } else {
+                null
+            }
         }
     }
 

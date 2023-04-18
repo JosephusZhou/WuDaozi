@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
-import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentActivity
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -22,7 +21,7 @@ import java.lang.ref.WeakReference
  * @date 2019-10-16
  * @desc
  */
-class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.LoaderCallbacks<Cursor> {
+class PhotoData(fragmentActivity: FragmentActivity): LoaderManager.LoaderCallbacks<Cursor> {
 
     companion object {
         private const val URL_LOADER = 9
@@ -147,10 +146,8 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
     }
 
     fun getCurrentAlbum(): AlbumEntity {
-        return mCurrentAlbumEntity?.let {
-            it
-        } ?: AlbumEntity().apply {
-            this.allPhoto = true
+        return mCurrentAlbumEntity ?: AlbumEntity().apply {
+            allPhoto = true
         }
     }
 
@@ -158,7 +155,7 @@ class PhotoData(@NonNull fragmentActivity: FragmentActivity): LoaderManager.Load
         return mCurrentAlbumEntity?.let {
             for(i in mAlbumList.indices) {
                 if (mAlbumList[i].albumId == it.albumId)
-                    return i
+                    return@let i
             }
             0
         } ?: 0

@@ -31,7 +31,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.JosephusZhou:WuDaozi:1.0.2'
+	implementation 'com.github.JosephusZhou:WuDaozi:1.0.5'
 }
 ```
 
@@ -42,34 +42,21 @@ dependencies {
 **Step 4.** Start to select images from `Activity` or `Fragment`
 
 ```kotlin
+val launcher = WuDaozi.getLauncher(this) { result ->
+    result?.let {
+        for (uri in it) {
+            Log.e("WuDaozi", "->$uri")
+        }
+    } ?: Toast.makeText(this, "canceled", Toast.LENGTH_SHORT)
+        .show()
+}
 WuDaozi.with(this)
         .theme(R.style.CustomWuDaoziTheme)
         .imageLoader(GlideLoader())
         .columnsCount(4)
         .maxSelectableCount(9)
         .filter(minByteSize = 1024 * 10, selectedTypes = arrayOf(Filter.Type.JPG))
-        .start()
-```
-
-**Step 5.** Receive result in `onActivityResult()`
-
-```kotlin
-override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            WuDaozi.REQUEST_CODE -> {
-                if (resultCode == Activity.RESULT_OK && data != null) {
-                    val bundle = data.extras
-                    bundle?.let {
-                        val uriList: ArrayList<Uri> = it.getParcelableArrayList<Uri>(WuDaozi.BUNDLE_KEY) as ArrayList<Uri>
-                        for(uri in uriList) {
-                            Log.e("WuDaozi", "->$uri")
-                        }
-                    }
-                }
-            }
-            else -> super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
+        .start(launcher)
 ```
 
 ## How to customize

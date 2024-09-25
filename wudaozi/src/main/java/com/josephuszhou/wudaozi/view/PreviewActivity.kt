@@ -14,32 +14,29 @@ import androidx.viewpager.widget.ViewPager
 import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.adapter.PreviewPagerAdapter
 import com.josephuszhou.wudaozi.config.Config
-import com.josephuszhou.wudaozi.data.PhotoData
 import com.josephuszhou.wudaozi.data.SelectedData
-import com.josephuszhou.wudaozi.entity.AlbumEntity
 import com.josephuszhou.wudaozi.entity.PhotoEntity
 import com.josephuszhou.wudaozi.widget.CheckView
 import com.josephuszhou.wudaozi.widget.PreviewViewPager
 import it.sephiroth.android.library.imagezoom.ImageViewTouch
 
 class PreviewActivity : AppCompatActivity(), View.OnClickListener,
-    ImageViewTouch.OnImageViewTouchSingleTapListener, ViewPager.OnPageChangeListener,
-    PhotoData.OnLoadListener {
+    ImageViewTouch.OnImageViewTouchSingleTapListener, ViewPager.OnPageChangeListener {
 
     companion object {
-        private const val ARGS_ALBUM_ENTITY = "argsAlbumEntity"
+        private const val ARGS_PHOTO_LIST = "argsPhotoList"
 
         private const val ARGS_PHOTO_ENTITY = "argsPhotoEntity"
 
         fun start(
             activity: Activity,
             launcher: ActivityResultLauncher<Intent>,
-            albumEntity: AlbumEntity,
+            photoList: ArrayList<PhotoEntity>,
             photoEntity: PhotoEntity
         ) {
             val intent = Intent(activity, PreviewActivity::class.java).apply {
                 putExtras(Bundle().apply {
-                    putParcelable(ARGS_ALBUM_ENTITY, albumEntity)
+                    putParcelableArrayList(ARGS_PHOTO_LIST, photoList)
                     putParcelable(ARGS_PHOTO_ENTITY, photoEntity)
                 })
             }
@@ -54,11 +51,9 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
     private lateinit var layoutTop: FrameLayout
     private lateinit var layoutBottom: FrameLayout
 
-    private var mSlectedAlbumEntity: AlbumEntity? = null
+    private var mPhotoList: ArrayList<PhotoEntity>? = null
 
     private var mEntryPhotoEntity: PhotoEntity? = null
-
-    private lateinit var mPhotoData: PhotoData
 
     private var mSelectedData = SelectedData.getInstance()
 
@@ -76,9 +71,9 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
 
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
-        mSlectedAlbumEntity = intent?.extras?.getParcelable(ARGS_ALBUM_ENTITY)
+        mPhotoList = intent?.extras?.getParcelableArrayList<PhotoEntity>(ARGS_PHOTO_LIST) as ArrayList<PhotoEntity>
         mEntryPhotoEntity = intent?.extras?.getParcelable(ARGS_PHOTO_ENTITY)
-        if (mSlectedAlbumEntity == null || mEntryPhotoEntity == null) {
+        if (mPhotoList == null || mEntryPhotoEntity == null) {
             throw Exception("Can you just pass a entity to me?")
         }
 
@@ -99,25 +94,18 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
 
         setSureTextStatus()
 
-        mPhotoData = PhotoData(this).apply {
-            setOnLoadListener(this@PreviewActivity)
-            load()
-        }
-    }
-
-    override fun onLoaded() {
-        val photoList = mPhotoData.getPhotoList(mSlectedAlbumEntity!!)
-        mPreviewPagerAdapter.setData(photoList)
+        mPreviewPagerAdapter.setData(mPhotoList!!)
 
         var entryIndex = 0
-        for(i in photoList.indices) {
-            if (photoList[i].id == mEntryPhotoEntity!!.id) {
+        for(i in mPhotoList!!.indices) {
+            if (mPhotoList!![i].id == mEntryPhotoEntity!!.id) {
                 entryIndex = i
             }
         }
         previewViewPager.setCurrentItem(entryIndex, false)
         mPrePosition = entryIndex
     }
+
 
     override fun onClick(v: View?) {
         when (v) {

@@ -73,7 +73,7 @@ class CheckView: View {
         mTextPaint.textSize = mTextSize
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         val drawWidth = width - paddingStart - paddingEnd

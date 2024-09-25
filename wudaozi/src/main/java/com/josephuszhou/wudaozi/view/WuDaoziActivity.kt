@@ -16,7 +16,7 @@ import com.josephuszhou.wudaozi.R
 import com.josephuszhou.wudaozi.WuDaozi
 import com.josephuszhou.wudaozi.adapter.PhotoAdapter
 import com.josephuszhou.wudaozi.config.Config
-import com.josephuszhou.wudaozi.data.PhotoData
+import com.josephuszhou.wudaozi.data.AlbumData
 import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.entity.PhotoEntity
 import com.josephuszhou.wudaozi.widget.AlbumSpinner
@@ -24,13 +24,13 @@ import com.josephuszhou.wudaozi.widget.PhotoGridView
 
 class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     AlbumSpinner.OnItemSelectedListener, PhotoAdapter.OnCheckStateListener,
-    PhotoAdapter.OnThumbnailClickListener, PhotoData.OnLoadListener {
+    PhotoAdapter.OnThumbnailClickListener, AlbumData.OnAlbumDataLoadListener {
 
     private lateinit var mAlbumSpinner: AlbumSpinner
 
     private lateinit var mPhotoGridView: PhotoGridView
 
-    private lateinit var mPhotoData: PhotoData
+    private lateinit var mAlbumData: AlbumData
 
     private lateinit var toolbar: Toolbar
     private lateinit var tvSure: AppCompatTextView
@@ -82,7 +82,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
             setOnThumbnailClickListener(this@WuDaoziActivity)
         }
 
-        mPhotoData = PhotoData(this).apply {
+        mAlbumData = AlbumData(this).apply {
             setOnLoadListener(this@WuDaoziActivity)
             load()
         }
@@ -94,7 +94,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onDestroy() {
-        mPhotoData.destory()
+        mAlbumData.destory()
         super.onDestroy()
     }
 
@@ -113,16 +113,16 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         } else super.onOptionsItemSelected(item)
     }
 
-    override fun onLoaded() {
-        mAlbumSpinner.setData(mPhotoData.getAlbumList())
-        val albumIndex = mPhotoData.getCurrentAlbumIndex()
+    override fun onAlbumDataLoaded() {
+        mAlbumSpinner.setData(mAlbumData.getAlbumList())
+        val albumIndex = mAlbumData.getCurrentAlbumIndex()
         mAlbumSpinner.setSelected(albumIndex)
         onItemSelected(albumIndex)
     }
 
     override fun onItemSelected(position: Int) {
-        mPhotoData.setCurrentAlbum(position)
-        mPhotoGridView.setData(mPhotoData.getPhotoList(mPhotoData.getCurrentAlbum()))
+        mAlbumData.setCurrentAlbum(position)
+        mPhotoGridView.setData(mAlbumData.getPhotoList())
     }
 
     override fun onCheckStateChanged() {
@@ -139,7 +139,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
         PreviewActivity.start(
             this,
             previewLauncher,
-            mPhotoData.getCurrentAlbum(),
+            mAlbumData.getPhotoList(),
             photoEntity
         )
     }

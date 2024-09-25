@@ -1,27 +1,29 @@
 package com.josephuszhou.wudaozi.entity
 
+import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 
-class AlbumEntity(): Parcelable {
+data class AlbumEntity(
+    var allPhoto: Boolean = false,
+    var id: Int,
+    var albumName: String,
+    var photoCount: Int = 0,
+    var thumbnail: PhotoEntity
+): Parcelable {
 
-    var allPhoto = false
-    var albumId = -1
-    lateinit var albumName: String
-    var photoCount = 0
-    lateinit var thumbnail: PhotoEntity
-
-    constructor(parcel: Parcel) : this() {
-        allPhoto = parcel.readByte() != 0.toByte()
-        albumId = parcel.readInt()
-        albumName = parcel.readString() ?: ""
-        photoCount = parcel.readInt()
-        thumbnail = parcel.readParcelable(PhotoEntity::class.java.classLoader) ?: PhotoEntity()
+    constructor(parcel: Parcel) : this(
+        parcel.readByte() != 0.toByte(),
+        parcel.readInt(),
+        parcel.readString() ?: "",
+        parcel.readInt(),
+        thumbnail = parcel.readParcelable(PhotoEntity::class.java.classLoader) ?: PhotoEntity(-1, "", 0, "", Uri.EMPTY)
+    ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeByte(if (allPhoto) 1 else 0)
-        parcel.writeInt(albumId)
+        parcel.writeInt(id)
         parcel.writeString(albumName)
         parcel.writeInt(photoCount)
         parcel.writeParcelable(thumbnail, flags)

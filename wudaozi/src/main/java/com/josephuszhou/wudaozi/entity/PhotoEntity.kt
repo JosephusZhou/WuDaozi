@@ -4,32 +4,29 @@ import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 
-class PhotoEntity() : Parcelable {
+data class PhotoEntity(
+    var id: Long,
+    var mimeType: String,
+    var size: Int,
+    var data: String,
+    var uri: Uri
+): Parcelable {
 
-    var id: Long = -1
-    lateinit var uri: Uri
-    var size: Int = -1
-    lateinit var mimeType: String
-
-    var albumId = -1
-    lateinit var albumName: String
-
-    constructor(parcel: Parcel) : this() {
-        id = parcel.readLong()
+    constructor(parcel: Parcel) : this(
+        parcel.readLong(),
+        parcel.readString() ?: "",
+        parcel.readInt(),
+        parcel.readString() ?: "",
         uri = parcel.readParcelable(Uri::class.java.classLoader) ?: Uri.EMPTY
-        size = parcel.readInt()
-        mimeType = parcel.readString() ?: ""
-        albumId = parcel.readInt()
-        albumName = parcel.readString() ?: ""
+    ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
-        parcel.writeParcelable(uri, flags)
-        parcel.writeInt(size)
         parcel.writeString(mimeType)
-        parcel.writeInt(albumId)
-        parcel.writeString(albumName)
+        parcel.writeInt(size)
+        parcel.writeString(data)
+        parcel.writeParcelable(uri, flags)
     }
 
     override fun describeContents(): Int {

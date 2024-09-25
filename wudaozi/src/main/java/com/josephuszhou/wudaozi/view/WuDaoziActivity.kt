@@ -136,10 +136,10 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onThumbnailClick(photoEntity: PhotoEntity) {
+        GlobalShare.getInstance().photoList = mAlbumData.getPhotoList()
         PreviewActivity.start(
             this,
             previewLauncher,
-            mAlbumData.getPhotoList(),
             photoEntity
         )
     }

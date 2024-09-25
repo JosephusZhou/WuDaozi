@@ -24,19 +24,15 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
     ImageViewTouch.OnImageViewTouchSingleTapListener, ViewPager.OnPageChangeListener {
 
     companion object {
-        private const val ARGS_PHOTO_LIST = "argsPhotoList"
-
         private const val ARGS_PHOTO_ENTITY = "argsPhotoEntity"
 
         fun start(
             activity: Activity,
             launcher: ActivityResultLauncher<Intent>,
-            photoList: ArrayList<PhotoEntity>,
             photoEntity: PhotoEntity
         ) {
             val intent = Intent(activity, PreviewActivity::class.java).apply {
                 putExtras(Bundle().apply {
-                    putParcelableArrayList(ARGS_PHOTO_LIST, photoList)
                     putParcelable(ARGS_PHOTO_ENTITY, photoEntity)
                 })
             }
@@ -71,7 +67,7 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
 
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
-        mPhotoList = intent?.extras?.getParcelableArrayList<PhotoEntity>(ARGS_PHOTO_LIST) as ArrayList<PhotoEntity>
+        mPhotoList = GlobalShare.getInstance().photoList
         mEntryPhotoEntity = intent?.extras?.getParcelable(ARGS_PHOTO_ENTITY)
         if (mPhotoList == null || mEntryPhotoEntity == null) {
             throw Exception("Can you just pass a entity to me?")

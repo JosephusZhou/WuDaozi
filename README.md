@@ -31,7 +31,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.JosephusZhou:WuDaozi:1.0.7'
+    implementation 'com.github.JosephusZhou:WuDaozi:1.0.8'
 }
 ```
 

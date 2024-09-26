@@ -31,13 +31,16 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.JosephusZhou:WuDaozi:1.0.5'
+    implementation 'com.github.JosephusZhou:WuDaozi:1.0.7'
 }
 ```
 
 **Step 3.** Request permission
 
-- `android.permission.READ_EXTERNAL_STORAGE`
+- Android 12 and below
+    - `android.permission.READ_EXTERNAL_STORAGE`
+- Android 13 and above
+    - `android.permission.READ_MEDIA_IMAGES`
 
 **Step 4.** Start to select images from `Activity` or `Fragment`
 
@@ -51,12 +54,12 @@ val launcher = WuDaozi.getLauncher(this) { result ->
         .show()
 }
 WuDaozi.with(this)
-        .theme(R.style.CustomWuDaoziTheme)
-        .imageLoader(GlideLoader())
-        .columnsCount(4)
-        .maxSelectableCount(9)
-        .filter(minByteSize = 1024 * 10, selectedTypes = arrayOf(Filter.Type.JPG))
-        .start(launcher)
+    .theme(R.style.CustomWuDaoziTheme)
+    .imageLoader(GlideLoader())
+    .columnsCount(4)
+    .maxSelectableCount(9)
+    .filter(minByteSize = 1024 * 10, selectedTypes = arrayOf(Filter.Type.JPG))
+    .start(launcher)
 ```
 
 ## How to customize

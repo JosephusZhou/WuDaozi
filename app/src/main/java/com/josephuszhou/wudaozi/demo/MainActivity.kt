@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.josephuszhou.wudaozi.WuDaozi
+import com.josephuszhou.wudaozi.callback.FilterResultHandleCallback
 import com.josephuszhou.wudaozi.filter.Filter
 import com.josephuszhou.wudaozi.imageloader.impl.GlideLoader
 
@@ -39,7 +40,14 @@ class MainActivity : AppCompatActivity() {
                 .imageLoader(GlideLoader()) // set custom image loader
                 .columnsCount(4) // set custom columns count
                 .maxSelectableCount(9) // set custom count of selectable images
-                .filter(minByteSize = 1024 * 10, selectedTypes = arrayOf(Filter.Type.JPG)) // set size filter, min is 10KB, only support jpg
+                .filter(minByteSize = 1024 * 100,
+                    selectedTypes = arrayOf(Filter.Type.GIF),
+                    callback = object: FilterResultHandleCallback {
+                        override fun handleResult(message: String) {
+                            Log.e("WuDaozi", message)
+                        }
+                    }
+                ) // set size filter, min is 100KB, only support gif, customize callback alerts for non-matching images
                 .start(launcher)  // start to select images
         }
     }

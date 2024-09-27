@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.annotation.IntRange
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
+import com.josephuszhou.wudaozi.callback.FilterResultHandleCallback
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.data.SelectedData
 import com.josephuszhou.wudaozi.filter.Filter
@@ -70,15 +71,16 @@ class WuDaozi private constructor(private val context: Context) {
     fun filter(
         @IntRange(from = 0) minByteSize: Int = Filter.Size.NO_FILTER_SIZE,
         @IntRange(from = 0) maxByteSize: Int = Filter.Size.NO_FILTER_SIZE,
-        selectedTypes: Array<String> = arrayOf(Filter.Type.ALL)
+        selectedTypes: Array<String> = arrayOf(Filter.Type.ALL),
+        callback: FilterResultHandleCallback? = null
     ): WuDaozi {
         var size: Filter.Size? = null
         var type: Filter.Type? = null
         if (minByteSize != Filter.Size.NO_FILTER_SIZE || maxByteSize != Filter.Size.NO_FILTER_SIZE) {
-            size = Filter.Size(minByteSize, maxByteSize)
+            size = Filter.Size(minByteSize, maxByteSize, callback)
         }
         if (!selectedTypes.contains(Filter.Type.ALL)) {
-            type = Filter.Type(selectedTypes)
+            type = Filter.Type(selectedTypes, callback)
         }
         mConfig.mFilter = Filter(size, type)
         return this

@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.annotation.IntRange
 import com.josephuszhou.wudaozi.R
+import com.josephuszhou.wudaozi.callback.FilterResultHandleCallback
 import com.josephuszhou.wudaozi.entity.PhotoEntity
 import com.josephuszhou.wudaozi.util.AttrUtil
 
@@ -13,7 +14,8 @@ import com.josephuszhou.wudaozi.util.AttrUtil
  * @date 2019-10-16
  * @desc
  */
-class Filter(private var mSize: Size? = null, private var mType: Type? = null) {
+class Filter(private val mSize: Size? = null,
+             private val mType: Type? = null) {
 
     fun filter(context: Context, entity: PhotoEntity): Boolean {
         return mSize?.let { s ->
@@ -28,8 +30,9 @@ class Filter(private var mSize: Size? = null, private var mType: Type? = null) {
      * Size class, unit is B
      */
     class Size(
-        @IntRange(from = 0) private var mMinSize: Int = NO_FILTER_SIZE,
-        @IntRange(from = 0) private var mMaxSize: Int = NO_FILTER_SIZE
+        @IntRange(from = 0) private val mMinSize: Int = NO_FILTER_SIZE,
+        @IntRange(from = 0) private val mMaxSize: Int = NO_FILTER_SIZE,
+        private val mCallback: FilterResultHandleCallback? = null
     ) {
 
         companion object {
@@ -62,13 +65,15 @@ class Filter(private var mSize: Size? = null, private var mType: Type? = null) {
                         Result()
                     } else {
                         Result(
-                            false, String.format(
+                            false,
+                            String.format(
                                 AttrUtil.getString(
                                     context,
                                     R.attr.larger_than_maxsize_text,
                                     R.string.wudaozi_larger_than_maxsize
                                 ), converSize(mMaxSize)
-                            )
+                            ),
+                            mCallback
                         )
                     }
                 }
@@ -77,13 +82,15 @@ class Filter(private var mSize: Size? = null, private var mType: Type? = null) {
                     Result()
                 } else {
                     Result(
-                        false, String.format(
+                        false,
+                        String.format(
                             AttrUtil.getString(
                                 context,
                                 R.attr.smaller_than_minsize_text,
                                 R.string.wudaozi_smaller_than_minsize
                             ), converSize(mMinSize)
-                        )
+                        ),
+                        mCallback
                     )
                 }
             } else {
@@ -91,14 +98,16 @@ class Filter(private var mSize: Size? = null, private var mType: Type? = null) {
                     Result()
                 } else {
                     Result(
-                        false, String.format(
+                        false,
+                        String.format(
                             AttrUtil.getString(
                                 context,
                                 R.attr.between_minsize_maxsize_text,
                                 R.string.wudaozi_between_minsize_maxsize
                             ), converSize(mMinSize),
                             converSize(mMaxSize)
-                        )
+                        ),
+                        mCallback
                     )
                 }
             }
@@ -108,7 +117,10 @@ class Filter(private var mSize: Size? = null, private var mType: Type? = null) {
     /**
      * Type class
      */
-    class Type(private var mTypes: Array<String>) {
+    class Type(
+        private val mTypes: Array<String>,
+        private val mCallback: FilterResultHandleCallback? = null
+    ) {
 
         companion object {
             const val ALL = "image/*"
@@ -130,22 +142,33 @@ class Filter(private var mSize: Size? = null, private var mType: Type? = null) {
                 }
             }
 
-            return Result(false, AttrUtil.getString(
-                context,
-                R.attr.unsupported_image_type_text,
-                R.string.wudaozi_unsupported_image_type
-            ))
+            return Result(
+                false,
+                AttrUtil.getString(
+                    context,
+                    R.attr.unsupported_image_type_text,
+                    R.string.wudaozi_unsupported_image_type
+                ),
+                mCallback
+            )
         }
     }
 
     /**
      * Result class
      */
-    class Result(private var flag: Boolean = true, private var message: String = "") {
+    class Result(private val flag: Boolean = true,
+                 private val message: String? = null,
+                 private val callback: FilterResultHandleCallback? = null
+        ) {
 
         fun handleResult(context: Context): Boolean {
             if (!flag) {
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                message?.let {
+                    callback?.handleResult(it) ?: run {
+                        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             return flag
         }

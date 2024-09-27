@@ -58,7 +58,14 @@ WuDaozi.with(this)
     .imageLoader(GlideLoader())
     .columnsCount(4)
     .maxSelectableCount(9)
-    .filter(minByteSize = 1024 * 10, selectedTypes = arrayOf(Filter.Type.JPG))
+    .filter(minByteSize = 1024 * 100,
+      selectedTypes = arrayOf(Filter.Type.GIF),
+      callback = object: FilterResultHandleCallback {
+        override fun handleResult(message: String) {
+          Log.e("WuDaozi", message)
+        }
+      }
+    )
     .start(launcher)
 ```
 

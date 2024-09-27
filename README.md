@@ -66,6 +66,12 @@ WuDaozi.with(this)
         }
       }
     )
+    .activityCallback(object : ActivityCallback {
+      override fun onAlbumActivityOnCreate(activity: AppCompatActivity) {
+      }
+      override fun onPreviewActivityOnCreate(activity: AppCompatActivity) {
+      }
+    })
     .start(launcher)
 ```
 

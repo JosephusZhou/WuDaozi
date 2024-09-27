@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.josephuszhou.wudaozi.WuDaozi
+import com.josephuszhou.wudaozi.callback.ActivityCallback
 import com.josephuszhou.wudaozi.callback.FilterResultHandleCallback
 import com.josephuszhou.wudaozi.filter.Filter
 import com.josephuszhou.wudaozi.imageloader.impl.GlideLoader
@@ -48,6 +49,19 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 ) // set size filter, min is 100KB, only support gif, customize callback alerts for non-matching images
+                .activityCallback(object : ActivityCallback {
+                    override fun onAlbumActivityOnCreate(activity: AppCompatActivity) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            activity.window.navigationBarColor = ContextCompat.getColor(activity, R.color.colorAccent)
+                        }
+                    }
+
+                    override fun onPreviewActivityOnCreate(activity: AppCompatActivity) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            activity.window.navigationBarColor = ContextCompat.getColor(activity, R.color.colorAccent)
+                        }
+                    }
+                }) // customize callback when activity onCreate
                 .start(launcher)  // start to select images
         }
     }

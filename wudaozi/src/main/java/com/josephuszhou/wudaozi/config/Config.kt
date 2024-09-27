@@ -1,6 +1,7 @@
 package com.josephuszhou.wudaozi.config
 
 import com.josephuszhou.wudaozi.R
+import com.josephuszhou.wudaozi.callback.ActivityCallback
 import com.josephuszhou.wudaozi.filter.Filter
 import com.josephuszhou.wudaozi.imageloader.ImageLoader
 import com.josephuszhou.wudaozi.imageloader.impl.GlideLoader
@@ -30,6 +31,8 @@ class Config private constructor() {
     var mMaxSelectableCount: Int = 1
 
     var mFilter: Filter? = null
+
+    var mCallback: ActivityCallback? = null
 
     fun reset() {
         mThemeId = R.style.WuDaozi_Theme

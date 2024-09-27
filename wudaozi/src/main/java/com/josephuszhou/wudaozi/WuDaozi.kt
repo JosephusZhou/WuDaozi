@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.annotation.IntRange
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
+import com.josephuszhou.wudaozi.callback.ActivityCallback
 import com.josephuszhou.wudaozi.callback.FilterResultHandleCallback
 import com.josephuszhou.wudaozi.config.Config
 import com.josephuszhou.wudaozi.data.SelectedData
@@ -83,6 +84,11 @@ class WuDaozi private constructor(private val context: Context) {
             type = Filter.Type(selectedTypes, callback)
         }
         mConfig.mFilter = Filter(size, type)
+        return this
+    }
+
+    fun activityCallback(callback: ActivityCallback): WuDaozi {
+        mConfig.mCallback = callback
         return this
     }
 

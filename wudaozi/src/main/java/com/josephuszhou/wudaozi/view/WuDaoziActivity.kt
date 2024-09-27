@@ -86,6 +86,8 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
             setOnLoadListener(this@WuDaoziActivity)
             load()
         }
+
+        Config.getInstance().mCallback?.onAlbumActivityOnCreate(this)
     }
 
     override fun onResume() {

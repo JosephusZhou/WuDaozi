@@ -100,6 +100,8 @@ class PreviewActivity : AppCompatActivity(), View.OnClickListener,
         }
         previewViewPager.setCurrentItem(entryIndex, false)
         mPrePosition = entryIndex
+
+        Config.getInstance().mCallback?.onPreviewActivityOnCreate(this)
     }
 
 

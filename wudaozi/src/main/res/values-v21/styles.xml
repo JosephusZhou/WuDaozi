@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="WuDaozi.Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/wudaozi_primary</item>
+        <item name="colorPrimaryDark">@color/wudaozi_primary</item>
+        <item name="android:navigationBarColor">@color/wudaozi_primary</item>
+        <!-- image select activity background color -->
+        <item name="image_select_background_color">@color/wudaozi_image_select_background_color
+        </item>
+        <!-- toolbar theme -->
+        <item name="toolbar_theme">@style/WuDaozi.Toolbar</item>
+        <!-- toolbar back icon -->
+        <item name="toolbar_back_icon">@null</item>
+        <!-- toolbar selected album title color -->
+        <item name="toolbar_album_text_color">@color/wudaozi_toolbar_control_normal_color</item>
+        <!-- toolbar sure text color -->
+        <item name="toolbar_sure_text_color">@color/wudaozi_sure_text_color</item>
+        <!-- spinner album bg color -->
+        <item name="spinner_album_bg_color">@color/wudaozi_image_select_background_color</item>
+        <!-- spinner album title color -->
+        <item name="spinner_album_title_text_color">@color/wudaozi_spinner_album_title_text_color
+        </item>
+        <!-- spinner album photo count color -->
+        <item name="spinner_album_count_text_color">@color/wudaozi_spinner_album_count_text_color
+        </item>
+        <!-- Photo thumbnail placeholder for image select activity -->
+        <item name="thumbnail_placeholder">@color/wudaozi_thumbnail_placeholder_color</item>
+        <!-- Photo thumbnail mask color for image select activity -->
+        <item name="thumbnail_mask_color">@color/wudaozi_thumbnail_mask_color</item>
+        <!-- Photo thumbnail check circle stroke color -->
+        <item name="check_stroke_color">@color/wudaozi_check_stroke_color</item>
+        <!-- Photo thumbnail check circle fill color -->
+        <item name="check_fill_color">@color/wudaozi_check_fill_color</item>
+        <!-- Photo thumbnail check circle stroke color -->
+        <item name="check_text_color">@color/wudaozi_check_text_color</item>
+        <!-- Filter Text -->
+        <item name="smaller_than_minsize_text">@string/wudaozi_smaller_than_minsize</item>
+        <!-- Filter Text -->
+        <item name="larger_than_maxsize_text">@string/wudaozi_larger_than_maxsize</item>
+        <!-- Filter Text -->
+        <item name="between_minsize_maxsize_text">@string/wudaozi_between_minsize_maxsize</item>
+        <!-- Filter Text -->
+        <item name="unsupported_image_type_text">@string/wudaozi_unsupported_image_type</item>
+        <!-- preview activity background color -->
+        <item name="preview_background_color">@color/wudaozi_preview_background_color</item>
+        <!-- preview activity bar background color -->
+        <item name="preview_bar_background_color">@color/wudaozi_preview_bar_background_color</item>
+        <!-- preview text color -->
+        <item name="preview_text_color">@color/wudaozi_preview_text_color</item>
+    </style>
+</resources>

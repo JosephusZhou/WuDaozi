@@ -39,6 +39,10 @@ class PhotoGridView(context: Context, mRecyclerView: RecyclerView) {
         mPhotoAdapter.setData(list)
     }
 
+    fun refresh() {
+        mPhotoAdapter.notifyDataSetChanged()
+    }
+
     fun setOnCheckStateListener(onCheckStateListener: PhotoAdapter.OnCheckStateListener) {
         mPhotoAdapter.setOnCheckStateListener(onCheckStateListener)
     }

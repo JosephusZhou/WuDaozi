@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 .columnsCount(4) // set custom columns count
                 .maxSelectableCount(9) // set custom count of selectable images
                 .filter(minByteSize = 1024 * 100,
-                    selectedTypes = arrayOf(Filter.Type.GIF),
+                    selectedTypes = arrayOf(Filter.Type.GIF, Filter.Type.JPG),
                     callback = object: FilterResultHandleCallback {
                         override fun handleResult(message: String) {
                             Log.e("WuDaozi", message)

@@ -93,6 +93,7 @@ class WuDaoziActivity : AppCompatActivity(), View.OnClickListener,
     override fun onResume() {
         super.onResume()
         onCheckStateChanged()
+        mPhotoGridView.refresh()
     }
 
     override fun onDestroy() {

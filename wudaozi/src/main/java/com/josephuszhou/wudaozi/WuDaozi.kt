@@ -26,6 +26,7 @@ class WuDaozi private constructor(private val context: Context) {
         @JvmStatic
         fun with(context: Context) = WuDaozi(context)
 
+        @JvmStatic
         fun getLauncher(
             activity: ComponentActivity,
             callback: ActivityResultCallback<ArrayList<Uri>?>
@@ -33,6 +34,7 @@ class WuDaozi private constructor(private val context: Context) {
             return activity.registerForActivityResult(SelectResult(), callback)
         }
 
+        @JvmStatic
         fun getLauncher(
             fragment: Fragment,
             callback: ActivityResultCallback<ArrayList<Uri>?>
